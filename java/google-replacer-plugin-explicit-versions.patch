@@ -1,0 +1,21 @@
+diff --git a/trunk/pom.xml b/trunk/pom.xml
+index b7781f9..a0989b5 100644
+--- a/trunk/pom.xml
++++ b/trunk/pom.xml
+@@ -56,6 +56,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
+ 					<artifactId>dashboard-maven-plugin</artifactId>
+ 					<version>1.0.0-beta-1</version>
+ 				</plugin>
++				<plugin>
++					<groupId>org.apache.maven.plugins</groupId>
++					<artifactId>maven-plugin-plugin</artifactId>
++					<version>3.10.1</version>
++				</plugin>
++				<plugin>
++					<groupId>org.apache.maven.plugins</groupId>
++					<artifactId>maven-surefire-plugin</artifactId>
++					<version>3.2.1</version>
++				</plugin>
+ 			</plugins>
+ 		</pluginManagement>
+ 		<plugins>

@@ -1,0 +1,103 @@
+diff --git a/org.eclipse.xtext/src/org/eclipse/xtext/parser/antlr/Lexer.java b/org.eclipse.xtext/src/org/eclipse/xtext/parser/antlr/Lexer.java
+index f235d497..1abe9aea 100644
+--- a/org.eclipse.xtext/src/org/eclipse/xtext/parser/antlr/Lexer.java
++++ b/org.eclipse.xtext/src/org/eclipse/xtext/parser/antlr/Lexer.java
+@@ -57,7 +57,7 @@ public abstract class Lexer extends org.antlr.runtime.Lexer {
+ 			this.state.tokenStartLine = input.getLine();
+ 			this.state.text = null;
+ 			if (input.LA(1) == CharStream.EOF) {
+-				return Token.EOF_TOKEN;
++				return getEOFToken();
+ 			}
+ 			try {
+ 				mTokens();
+diff --git a/org.eclipse.xtext/src/org/eclipse/xtext/parser/antlr/XtextTokenStream.java b/org.eclipse.xtext/src/org/eclipse/xtext/parser/antlr/XtextTokenStream.java
+index 5cfe6841..09a9d671 100644
+--- a/org.eclipse.xtext/src/org/eclipse/xtext/parser/antlr/XtextTokenStream.java
++++ b/org.eclipse.xtext/src/org/eclipse/xtext/parser/antlr/XtextTokenStream.java
+@@ -107,16 +107,35 @@ public class XtextTokenStream extends CommonTokenStream {
+ 		}
+ 		return result.toString();
+ 	}
++
++	// copied/modified from antlr 3.2 runtime sources
++	/** Load all tokens from the token source and put in tokens.
++	 *  This is done upon first LT request because you might want to
++	 *  set some token type / channel overrides before filling buffer.
++	 */
++	protected void fillBuffer() {
++		int index = 0;
++		Token t = tokenSource.nextToken();
++		while ( t!=null && t.getType()!=CharStream.EOF ) {
++			t.setTokenIndex(index);
++			tokens.add(t);
++			index++;
++			t = tokenSource.nextToken();
++		}
++		// leave p pointing at first token on channel
++		p = 0;
++		p = skipOffTokenChannels(p);
++    }
+ 	
+ 	@SuppressWarnings({ "serial" })
+-	private final class TokenList extends ArrayList<Object> {
++	private final class TokenList extends ArrayList<Token> {
+ 		private TokenList(int initialCapacity) {
+ 			super(initialCapacity);
+ 		}
+ 
+ 		@Override
+-		public Object get(int index) {
+-			Token tok = (Token) super.get(index);
++		public Token get(int index) {
++			Token tok = super.get(index);
+ 			// adjust only tokens in the 'future', as we wont change the channel of previously parsed
+ 			// tokens
+ 			int current = p;
+@@ -208,7 +227,7 @@ public class XtextTokenStream extends CommonTokenStream {
+ 	 * @since 2.22
+ 	 */
+ 	protected int getTokenIndex(Token tok) {
+-		if (tok == Token.EOF_TOKEN) {
++		if (tok.getType() == Token.EOF) {
+ 			return size();
+ 		}
+ 		return tok.getTokenIndex();
+@@ -291,7 +310,7 @@ public class XtextTokenStream extends CommonTokenStream {
+         	// copied from super.LT(k) except from the last assignment to p
+         	int k_ = k + 1;
+         	if ( (p+k_-1) >= tokens.size() ) {
+-    			return Token.EOF_TOKEN;
++    			return new CommonToken(Token.EOF);
+     		}
+     		int i = p;
+     		int n = 1;
+@@ -305,7 +324,7 @@ public class XtextTokenStream extends CommonTokenStream {
+     			n++;
+     		}
+     		if ( i>=tokens.size() ) {
+-    			return Token.EOF_TOKEN;
++    			return new CommonToken(Token.EOF);
+     		}
+     		p = i; // adjust p to the valid pointer
+             result = (Token)tokens.get(i);
+diff --git a/org.eclipse.xtext/src/org/eclipse/xtext/parser/impl/TokenRegionProvider.java b/org.eclipse.xtext/src/org/eclipse/xtext/parser/impl/TokenRegionProvider.java
+index ef51ecf7..5dd5d35d 100644
+--- a/org.eclipse.xtext/src/org/eclipse/xtext/parser/impl/TokenRegionProvider.java
++++ b/org.eclipse.xtext/src/org/eclipse/xtext/parser/impl/TokenRegionProvider.java
+@@ -41,13 +41,13 @@ public class TokenRegionProvider {
+ 		CommonToken nextToken = (CommonToken) lexer.nextToken();
+ 		int regionStart = region.getOffset();
+ 		int regionEnd = regionStart + region.getLength();
+-		while (nextToken != Token.EOF_TOKEN && currentEnd <= regionStart) {
++		while (nextToken.getType() != Token.EOF && currentEnd <= regionStart) {
+ 			currentStart = nextToken.getStartIndex();
+ 			currentEnd = nextToken.getStopIndex() + 1;
+ 			nextToken = (CommonToken) lexer.nextToken();
+ 		}
+ 		// nextToken is either EOF or the first token that follows the start of the given region
+-		while (nextToken != Token.EOF_TOKEN && currentEnd < regionEnd) {
++		while (nextToken.getType() != Token.EOF && currentEnd < regionEnd) {
+ 			currentEnd = nextToken.getStopIndex() + 1;
+ 			nextToken = (CommonToken) lexer.nextToken();
+ 		}
