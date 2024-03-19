@@ -1,4 +1,4 @@
-{lib, pkgs, callPackage, fetchurl, jdk, jre}:
+{lib, pkgs, callPackage, fetchurl, jdk, jre, packageOverrides}:
 
 let
 
@@ -45,7 +45,7 @@ compileClasspath = deps:
 runtimeClasspath = deps:
   builtins.concatStringsSep ":" (builtins.map (d: "${d}/${d.outputJar}") (builtins.filter (d: d ? outputJar) (collect-recursive deps (d: if d ? outputJar then d.buildInputs ++ d.runtimeOnlyDeps else []) {})));
 
-self = rec {
+self = (rec {
 
   inherit
     callPackage
@@ -293,6 +293,6 @@ self = rec {
 
   lombok = callPackage ./java/lombok.nix {};
 
-};
+} // (packageOverrides self));
 
 in self

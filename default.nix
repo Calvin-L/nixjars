@@ -1,3 +1,4 @@
-{ nixpkgs ? import <nixpkgs> { } }:
+{ nixpkgs ? import <nixpkgs> { },
+  packageOverrides ? pkgs: {} }:
 
-nixpkgs.callPackage ./toplevel.nix {}
+nixpkgs.callPackage ./toplevel.nix { inherit packageOverrides; }
