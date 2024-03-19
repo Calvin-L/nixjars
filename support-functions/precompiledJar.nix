@@ -20,7 +20,8 @@ stdenvNoCC.mkDerivation {
     pname
     version
     src
-    runtimeOnlyDeps;
+    runtimeOnlyDeps
+    outputJar;
   unpackPhase = "true";
   installPhase = ''
     mkdir -p "$out/lib/java"
