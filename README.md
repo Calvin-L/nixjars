@@ -9,7 +9,8 @@ To list available packages:
 
 TODO: document `buildJavaPackage`.  See `examples/basic-project.nix`.
 
-TODO: document how to overlay an upgrade for one particular package.
+TODO: document how to overlay an upgrade for one particular package.  See
+`examples/override-package.nix`.
 
 ## Motivation
 
