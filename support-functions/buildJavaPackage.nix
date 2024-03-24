@@ -83,9 +83,15 @@ stdenvNoCC.mkDerivation (
 
     runHook postBuild
   '';
+
+  # NOTE: --date argument helps ensure byte-for-byte reproducibility.  Without
+  # it, timestamps of the contents are included in the JAR file.  The actual
+  # date selection doesn't matter much; I happen to think the start of the new
+  # millenium is an elegant choice.
   installPhase = ''
     mkdir -p "$(dirname "$out/${outputJar}")"
     jar -c \
+      --date='2000-01-01T00:00:00Z' \
       --manifest=MANIFEST.MF \
       -f $out/${outputJar} \
       -C ${buildDirName}/classes .
