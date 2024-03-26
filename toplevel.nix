@@ -205,6 +205,9 @@ self = (rec {
 
   jopt-simple = callPackage ./java/jopt-simple.nix {};
 
+  joda-convert = callPackage ./java/joda-convert.nix {};
+  joda-time = callPackage ./java/joda-time.nix {};
+
   jmh = callPackage ./java/openjdk-jmh.nix {};
   jmh-core = jmh.core;
 
