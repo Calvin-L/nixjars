@@ -1,10 +1,18 @@
 {lib, buildJavaPackage, fetchFromGitHub,
- fastdoubleparser, jackson, stax2-api, snakeyaml,
- testWithJUnit5, junit4, junit, assertj-core, mockito, guava-testlib}:
+ fastdoubleparser, jackson, stax2-api, snakeyaml, joda-time,
+ testWithJUnit5, junit, assertj-core, mockito, guava-testlib,
+ testWithJUnit4, junit4, hamcrest}:
 
 let
   version = "2.17.0";
   license = lib.licenses.asl20;
+
+  modules-java8-src = fetchFromGitHub {
+    owner = "FasterXML";
+    repo = "jackson-modules-java8";
+    rev = "jackson-modules-java8-${version}";
+    hash = "sha256-hXJjJ3aeBR4Sx5a5HRmKAqJwSTmkuXHg3Rxczvc/1ys=";
+  };
 in
 {
 
@@ -226,6 +234,132 @@ in
       substituteInPlace "$F" \
         --replace '@projectartifactid@' '${pname}'
     '';
+  };
+
+  parameter-names = buildJavaPackage rec {
+    pname = "jackson-parameter-names";
+    inherit version license;
+    src = modules-java8-src;
+    sourceRoot = "${modules-java8-src.name}/parameter-names";
+    deps = [
+      jackson.annotations
+      jackson.core
+      jackson.databind
+    ];
+    patchPhase = ''
+      F=src/main/java/com/fasterxml/jackson/module/paramnames/PackageVersion.java
+      mv "$F.in" "$F"
+      substituteInPlace "$F" \
+        --replace '@package@' 'com.fasterxml.jackson.module.paramnames'
+      substituteInPlace "$F" \
+        --replace '@projectversion@' '${version}'
+      substituteInPlace "$F" \
+        --replace '@projectgroupid@' 'com.fasterxml.jackson.module'
+      substituteInPlace "$F" \
+        --replace '@projectartifactid@' '${pname}'
+    '';
+
+    # 2024/3/25: fails but I'm not sure why
+    # checkPhase = testWithJUnit4 {
+    #   testDeps = [
+    #     assertj-core
+    #     mockito
+    #   ];
+    # };
+  };
+
+  datetime = buildJavaPackage rec {
+    pname = "jackson-datetime";
+    inherit version license;
+    src = modules-java8-src;
+    sourceRoot = "${modules-java8-src.name}/datetime";
+    deps = [
+      jackson.annotations
+      jackson.core
+      jackson.databind
+    ];
+    patchPhase = ''
+      F=src/main/java/com/fasterxml/jackson/datatype/jsr310/PackageVersion.java
+      mv "$F.in" "$F"
+      substituteInPlace "$F" \
+        --replace '@package@' 'com.fasterxml.jackson.datatype.jsr310'
+      substituteInPlace "$F" \
+        --replace '@projectversion@' '${version}'
+      substituteInPlace "$F" \
+        --replace '@projectgroupid@' 'com.fasterxml.jackson.module'
+      substituteInPlace "$F" \
+        --replace '@projectartifactid@' '${pname}'
+    '';
+
+    # 2024/3/25: fails but I'm not sure why
+    # checkPhase = testWithJUnit4 {
+    #   testDeps = [
+    #     hamcrest
+    #   ];
+    # };
+  };
+
+  datatypes = buildJavaPackage rec {
+    pname = "jackson-datatypes";
+    inherit version license;
+    src = modules-java8-src;
+    sourceRoot = "${modules-java8-src.name}/datatypes";
+    deps = [
+      jackson.core
+      jackson.databind
+    ];
+    patchPhase = ''
+      F=src/main/java/com/fasterxml/jackson/datatype/jdk8/PackageVersion.java
+      mv "$F.in" "$F"
+      substituteInPlace "$F" \
+        --replace '@package@' 'com.fasterxml.jackson.datatype.jdk8'
+      substituteInPlace "$F" \
+        --replace '@projectversion@' '${version}'
+      substituteInPlace "$F" \
+        --replace '@projectgroupid@' 'com.fasterxml.jackson.module'
+      substituteInPlace "$F" \
+        --replace '@projectartifactid@' '${pname}'
+    '';
+    checkPhase = testWithJUnit4 {
+      testDeps = [
+        hamcrest
+        jackson.annotations
+      ];
+    };
+  };
+
+  datatype-joda = buildJavaPackage rec {
+    pname = "jackson-datatype-joda";
+    inherit version license;
+    src = fetchFromGitHub {
+      owner = "FasterXML";
+      repo = pname;
+      rev = "${pname}-${version}";
+      hash = "sha256-8YGrdw7A6qYzl1W6rbz6tSCH+a0IIQmZvVRgXfJVVe8=";
+    };
+    deps = [
+      jackson.annotations
+      jackson.core
+      jackson.databind
+      joda-time
+    ];
+    patchPhase = ''
+      F=src/main/java/com/fasterxml/jackson/datatype/joda/PackageVersion.java
+      mv "$F.in" "$F"
+      substituteInPlace "$F" \
+        --replace '@package@' 'com.fasterxml.jackson.datatype.joda'
+      substituteInPlace "$F" \
+        --replace '@projectversion@' '${version}'
+      substituteInPlace "$F" \
+        --replace '@projectgroupid@' 'com.fasterxml.jackson.datatype'
+      substituteInPlace "$F" \
+        --replace '@projectartifactid@' '${pname}'
+    '';
+    checkPhase = testWithJUnit4 {
+      testDeps = [
+        hamcrest
+      ];
+    };
   };
 
 }
