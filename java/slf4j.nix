@@ -18,6 +18,9 @@ in {
     pname = "slf4j-api";
     inherit version license src;
     srcDir = "slf4j-api/src/main/java";
+    manifestProperties = {
+      "Automatic-Module-Name" = "org.slf4j";
+    };
   };
 
   ext = buildJavaPackage rec {

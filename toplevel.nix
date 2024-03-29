@@ -124,6 +124,8 @@ self = (rec {
   log4j-1_2-api = log4j.log4j-1_2-api;
   log4j-slf4j = log4j.log4j-slf4j;
 
+  logback = recurseIntoAttrs (callPackage ./java/logback.nix {});
+
   slf4j = recurseIntoAttrs (callPackage ./java/slf4j.nix {});
 
   cal10n-api = callPackage ./java/cal10n-api.nix {};

@@ -10,4 +10,7 @@ buildJavaPackage rec {
     rev = "${pname}-${version}";
     hash = "sha256-VwR3OMEKMH/GQ/sXSkxc2riUQ+kTNpubYCAyHUa+3ZE=";
   };
+  manifestProperties = {
+    "Automatic-Module-Name" = "org.fusesource.jansi";
+  };
 }
