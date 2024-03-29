@@ -136,7 +136,7 @@ self = (rec {
 
   jakarta-inject-api = callPackage ./java/jakarta/inject-api.nix {};
 
-  servlet-api = callPackage ./java/servlet-api.nix {};
+  jakarta-servlet-api = callPackage ./java/jakarta/servlet-api.nix {};
 
   jline = recurseIntoAttrs (callPackage ./java/jline.nix {});
 

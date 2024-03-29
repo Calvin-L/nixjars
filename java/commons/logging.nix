@@ -1,4 +1,4 @@
-{lib, fetchurl, buildJavaPackage, log4j-1_2-api, servlet-api}:
+{lib, fetchurl, buildJavaPackage, log4j-1_2-api, jakarta-servlet-api}:
 
 buildJavaPackage rec {
   pname = "apache-commons-logging";
@@ -15,12 +15,15 @@ buildJavaPackage rec {
     # logkit
     # avalon-framework
     # avalon-logkit
-    servlet-api
+    jakarta-servlet-api
   ];
 
   # fuck this deprecated bullshit
-  configurePhase = ''
+  patchPhase = ''
     rm src/main/java/org/apache/commons/logging/impl/LogKitLogger.java
     rm src/main/java/org/apache/commons/logging/impl/AvalonLogger.java
+
+    substituteInPlace src/main/java/org/apache/commons/logging/impl/ServletContextCleaner.java \
+      --replace-quiet 'javax.servlet.' 'jakarta.servlet.'
   '';
 }
