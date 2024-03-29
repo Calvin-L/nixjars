@@ -2,6 +2,19 @@
 
 This is a set of Nix expressions for building Java packages (JARs).  It already
 includes several common Java libraries and can be easily extended with more.
+For instance, the top 10 most popular Java libraries (as of March 2024) are all
+available:
+
+ - junit (as `junit4`)
+ - slf4j-api (as `slf4j.api`)
+ - guava
+ - mockito
+ - jackson-databind (as `jackson.databind`)
+ - commons-lang3 (as `commons-lang`)
+ - logback-classic (as `logback.classic`)
+ - commons-io
+ - lombok
+ - gson
 
 To list available packages:
 
