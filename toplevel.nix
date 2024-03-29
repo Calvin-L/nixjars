@@ -96,6 +96,8 @@ self = (rec {
 
   conversantmedia-disruptor = callPackage ./java/conversantmedia-disruptor.nix {};
 
+  janino = recurseIntoAttrs (callPackage ./java/janino.nix {});
+
   jansi = callPackage ./java/jansi.nix {};
 
   jms-api = callPackage ./java/jms-api.nix {};
