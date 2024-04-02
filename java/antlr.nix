@@ -59,6 +59,12 @@ rec {
     deps = [
       antlr2
     ];
+    patchPhase = ''
+      substituteInPlace \
+        src/org/antlr/stringtemplate/language/*.g \
+        src/org/antlr/stringtemplate/misc/StringTemplateTreeView.java \
+        --replace-fail 'import org.antlr.stringtemplate.*;' 'import org.antlr.stringtemplate.*; import org.antlr.stringtemplate.StringTemplate;'
+    '';
     configurePhase = ''
       pushd src/org/antlr/stringtemplate/language
       antlr template.g

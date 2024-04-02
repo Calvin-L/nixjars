@@ -32,9 +32,11 @@ in {
     # incredibly hacky and broken
     configurePhase = ''
       substituteInPlace org.eclipse.jdt.core.compiler.batch/src/org/eclipse/jdt/internal/compiler/apt/model/ElementsImpl9.java \
-        --replace '@Override' ""
+        --replace-fail '@Override' ""
       substituteInPlace org.eclipse.jdt.core.compiler.batch/src/org/eclipse/jdt/internal/compiler/apt/model/ElementsImpl9.java \
-        --replace 'getOutermostTypeElement(element)' 'null'
+        --replace-fail 'getOutermostTypeElement(element)' 'null'
+      substituteInPlace org.eclipse.jdt.core.compiler.batch/src/org/eclipse/jdt/internal/compiler/parser/Parser.java \
+        --replace-fail 'import org.eclipse.jdt.internal.compiler.ast.*;' 'import org.eclipse.jdt.internal.compiler.ast.*; import org.eclipse.jdt.internal.compiler.ast.StringTemplate;'
     '';
 
     exes = [

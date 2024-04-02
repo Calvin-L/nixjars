@@ -17,6 +17,9 @@ in {
     pname = "janino-commons-compiler";
     inherit version license src;
     sourceRoot = "${src.name}/commons-compiler";
+    patchPhase = ''
+      rm -rv src/main/java/org/codehaus/commons/compiler/samples
+    '';
     manifestProperties = {
       "Automatic-Module-Name" = "commons.compiler";
     };
