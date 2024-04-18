@@ -85,7 +85,7 @@ rec {
       core-runtime
       eclipse-equinox.common
       eclipse-equinox.osgi-supplement
-      eclipse-equinox.osgi-framework
+      osgi.framework
       eclipse-equinox.registry
       eclipse-equinox.preferences
     ];
@@ -104,7 +104,8 @@ rec {
       eclipse-equinox.common
       eclipse-equinox.preferences
       eclipse-equinox.registry
-      eclipse-equinox.osgi-framework
+      osgi.framework
+      osgi.service-url
       eclipse-equinox.osgi-supplement
       core-jobs
       core-filesystem

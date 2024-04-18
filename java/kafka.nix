@@ -45,7 +45,9 @@ in {
       jackson.databind
       # jackson.jdk8types
       jose4j
-      kafka.generator
+    ];
+    nativeBuildInputs = [
+      kafka.generator.bin
     ];
     configurePhase = ''
       kafka-generator \

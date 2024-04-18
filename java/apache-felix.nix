@@ -25,12 +25,16 @@ in {
   resolver = buildJavaPackage {
     pname = "apache-felix-resolver";
     inherit version license src;
-    srcDir = "resolver/src/main/java";
+    sourceRoot = "${src.name}/resolver";
     deps = [
       osgi.annotation-versioning
-      osgi.resource
       osgi.framework
+      osgi.resource
+      osgi.service-resolver
     ];
+    patchPhase = ''
+      rm -rv src/main/java/org/osgi
+    '';
   };
 
 }

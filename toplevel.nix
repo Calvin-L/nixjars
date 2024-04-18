@@ -79,6 +79,8 @@ self = (rec {
 
   fetchMaven = callPackage ./support-functions/fetchMaven.nix {};
 
+  no-class-dups = callPackage ./java/no-class-dups {};
+
   # avalon-logkit = callPackage ./java/avalon-logkit.nix {};
 
   brotli-dec = callPackage ./java/brotli-dec.nix {};

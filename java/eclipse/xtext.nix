@@ -64,8 +64,8 @@ rec {
     srcDir = "org.eclipse.xtext";
     # srcDir = "org.eclipse.xtext/src";
     sourceEncoding = "iso-8859-1";
-    compileOnlyDeps = [
-      antlr3
+    nativeBuildInputs = [
+      antlr3.bin
     ];
     deps = [
       eclipse-emf.common

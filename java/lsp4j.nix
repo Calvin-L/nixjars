@@ -45,11 +45,14 @@ in {
       guava
       gson
     ];
+    nativeBuildInputs = [
+      xtext.xtend-core.bin
+    ];
     configurePhase = ''
       mkdir xtend-generated-java
       xtend_cp='${runtimeClasspath deps}'
       echo "Compiling xtend files with classpath $xtend_cp"
-      ${xtext.xtend-core}/bin/xtendc -verbose \
+      xtendc -verbose \
         -cp "$xtend_cp" \
         -d xtend-generated-java \
         org.eclipse.lsp4j.generator/src/main/java
@@ -65,6 +68,9 @@ in {
       lsp4j.jsonrpc-debug
       gson
     ];
+    nativeBuildInputs = [
+      xtext.xtend-core.bin
+    ];
     compileOnlyDeps = [
       lsp4j.generator
     ];
@@ -72,7 +78,7 @@ in {
       cp -r org.eclipse.lsp4j.debug/src/main/java xtend-generated-java
       xtend_cp='${runtimeClasspath (deps ++ compileOnlyDeps)}'
       echo "Compiling xtend files with classpath $xtend_cp"
-      ${xtext.xtend-core}/bin/xtendc -verbose \
+      xtendc -verbose \
         -cp "$xtend_cp" \
         -d xtend-generated-java \
         org.eclipse.lsp4j.debug/src/main/java

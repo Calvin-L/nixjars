@@ -96,8 +96,8 @@ rec {
     sourceRoot = "${antlr3-src.name}/tool";
     srcDir = "src/main";
     resourceDir = "src/main/resources";
-    compileOnlyDeps = [
-      antlr3-bootstrap
+    nativeBuildInputs = [
+      antlr3-bootstrap.bin
     ];
     deps = [
       antlr3-runtime
@@ -151,8 +151,8 @@ rec {
       hash = "sha256-IjCLoJUGjJ7ELXr2DGxBUvjMqHz70sO1dNgIJNJtYWg=";
     };
     srcDir = "src";
-    compileOnlyDeps = [
-      antlr3-bootstrap
+    nativeBuildInputs = [
+      antlr3-bootstrap.bin
     ];
     deps = [
       antlr3-runtime
@@ -220,9 +220,9 @@ rec {
     sourceRoot = "${antlr4-src.name}/tool";
     srcDir = "src";
     resourceDir = "resources";
-    compileOnlyDeps = [
-      antlr3
-      antlr4-unicodedatacompiler
+    nativeBuildInputs = [
+      antlr3.bin
+      antlr4-unicodedatacompiler.bin
     ];
     deps = [
       antlr3-runtime # !?

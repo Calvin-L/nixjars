@@ -1,4 +1,5 @@
-{lib, stdenvNoCC, jdk, jre, rsync, makeWrapper, buildDirName, compileClasspath, runtimeClasspath}:
+{lib, stdenvNoCC, jdk, jre, rsync, makeWrapper, no-class-dups,
+ buildDirName, compileClasspath, runtimeClasspath}:
 
 args@{
   pname,
@@ -6,9 +7,11 @@ args@{
   license,
   srcDir ? "src/main/java",
   resourceDir ? null,
+  checkForClassDups ? true,
   deps ? [],
   compileOnlyDeps ? [],
   runtimeOnlyDeps ? [],
+  nativeBuildInputs ? [],
   annotationProcessors ? [],
   sourceEncoding ? "UTF-8",
   extraJavacArgs ? [],
@@ -44,11 +47,13 @@ let
   annotationsArgs = if annotationProcessors == []
     then []
     else ["-processorpath" (runtimeClasspath compileOnlyDeps) "-processor" (builtins.concatStringsSep "," annotationProcessors)];
+  actuallyDoClassDupCheck = checkForClassDups && (compileOnlyDeps ++ deps) != [];
 in
 
 stdenvNoCC.mkDerivation (
   builtins.removeAttrs args [
-    "license" "srcDir" "resourceDir" "deps" "compileOnlyDeps" "runtimeOnlyDeps"
+    "license" "srcDir" "resourceDir" "checkForClassDups"
+    "deps" "compileOnlyDeps" "runtimeOnlyDeps" "nativeBuildInputs"
     "annotationProcessors" "sourceEncoding" "extraJavacArgs"
     "manifestProperties" "exes"] // {
   inherit
@@ -56,7 +61,12 @@ stdenvNoCC.mkDerivation (
     version
     outputJar
     runtimeOnlyDeps;
-  nativeBuildInputs = [jdk rsync] ++ (if exes == [] then [] else [makeWrapper]) ++ compileOnlyDeps;
+  nativeBuildInputs =
+    [jdk rsync] ++
+    nativeBuildInputs ++
+    compileOnlyDeps ++
+    lib.optionals (exes != []) [makeWrapper] ++
+    lib.optionals actuallyDoClassDupCheck [no-class-dups];
   buildInputs = deps;
   doCheck = checkPhase != null;
   buildPhase = ''
@@ -66,6 +76,7 @@ stdenvNoCC.mkDerivation (
     mkdir ${buildDirName}/classes
     export CLASSPATH='${compileClasspath (deps ++ compileOnlyDeps)}'
     echo " --> Compile classpath: '$CLASSPATH'"
+    ${if actuallyDoClassDupCheck then "no-class-dups \"$CLASSPATH\"" else "echo 'Skipping class dup check'"}
     find '${srcDir}' -iname '*.java' -type f | sort >${buildDirName}/java-files
     echo ' --> Compiling' $(wc -l < ${buildDirName}/java-files) '.java files'
     javac \

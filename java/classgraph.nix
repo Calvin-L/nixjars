@@ -10,4 +10,5 @@ buildJavaPackage rec {
     rev = "${pname}-${version}";
     hash = "sha256-Y0xv/Ip3sYwnrDFf8i+1QqlJm6GvNpz1bPAJcFwJ2K0=";
   };
+  checkForClassDups = false; # this is a dependency of the dedup infrastructure
 }

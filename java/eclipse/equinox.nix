@@ -61,16 +61,6 @@ rec {
     '';
   };
 
-  osgi-framework = buildJavaPackage {
-    pname = "eclipse-equinox-osgi-framework";
-    inherit version license src;
-    srcDir = "bundles/org.eclipse.osgi/osgi/src";
-    deps = [
-      osgi.annotation-versioning
-      osgi-container
-    ];
-  };
-
   common = buildJavaPackage {
     pname = "eclipse-equinox-common";
     inherit version license src;
