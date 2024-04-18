@@ -4,14 +4,16 @@
 
 let
   # TODO: dedup with buildJavaPackage
+  dollar = "$";
   outputJar = "lib/java/${pname}-${version}.jar";
   mkExe = e: ''
-    echo ' --> creating ${e.name} (${e.class})'
+    outexe="${dollar}{!outputBin}/bin/${e.name}"
+    echo " --> creating $outexe (${e.class})"
     makeWrapper \
       '${jre}/bin/java' \
-      $out/bin/'${e.name}' \
+      "$outexe" \
       --add-flags "-XX:+UseParallelGC ${e.class}" \
-      --set CLASSPATH $out/'${outputJar}:${runtimeClasspath runtimeOnlyDeps}'
+      --set CLASSPATH "${dollar}{!outputLib}"/'${outputJar}:${runtimeClasspath runtimeOnlyDeps}'
   '';
 in
 
@@ -24,11 +26,12 @@ stdenvNoCC.mkDerivation {
     outputJar;
   unpackPhase = "true";
   installPhase = ''
-    mkdir -p "$out/lib/java"
-    cp -v --reflink=auto "$src" "$out/${outputJar}"
+    mkdir -p "${dollar}{!outputLib}/lib/java"
+    cp -v --reflink=auto "$src" "${dollar}{!outputLib}/${outputJar}"
     ${builtins.concatStringsSep "\n" (builtins.map mkExe exes)}
   '';
   nativeBuildInputs = lib.optional (exes != []) [makeWrapper];
+  outputs = if exes == [] then ["out"] else ["bin" "lib" "out"];
   meta = {
     license = license;
   };

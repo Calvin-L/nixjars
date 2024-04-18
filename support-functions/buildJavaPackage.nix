@@ -19,16 +19,18 @@ args@{
   ...}:
 
 let
+  dollar = "$";
   outputJar = "lib/java/${pname}-${version}.jar";
   # makeWrapper docs:
   # https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/make-wrapper.sh
   mkExe = e: ''
-    echo ' --> creating ${e.name} (${e.class})'
+    outexe="${dollar}{!outputBin}/bin/${e.name}"
+    echo " --> creating $outexe (${e.class})"
     makeWrapper \
       '${jre}/bin/java' \
-      $out/bin/'${e.name}' \
+      "$outexe" \
       --add-flags "-XX:+UseParallelGC ${e.class}" \
-      --set CLASSPATH $out/'${outputJar}:${runtimeClasspath (deps ++ runtimeOnlyDeps)}'
+      --set CLASSPATH "${dollar}{!outputLib}"/'${outputJar}:${runtimeClasspath (deps ++ runtimeOnlyDeps)}'
   '';
   copyResources = if resourceDir != null then ''
     echo ' --> Copying resources'
@@ -84,16 +86,19 @@ stdenvNoCC.mkDerivation (
     runHook postBuild
   '';
 
+  outputs = if exes == [] then ["out"] else ["bin" "lib" "out"];
+
   # NOTE: --date argument helps ensure byte-for-byte reproducibility.  Without
   # it, timestamps of the contents are included in the JAR file.  The actual
   # date selection doesn't matter much; I happen to think the start of the new
   # millenium is an elegant choice.
   installPhase = ''
-    mkdir -p "$(dirname "$out/${outputJar}")"
+    echo " --> Creating JAR ${dollar}{!outputLib}/${outputJar}"
+    mkdir -p "$(dirname "${dollar}{!outputLib}/${outputJar}")"
     jar -c \
       --date='2000-01-01T00:00:00Z' \
       --manifest=MANIFEST.MF \
-      -f $out/${outputJar} \
+      -f "${dollar}{!outputLib}/${outputJar}" \
       -C ${buildDirName}/classes .
     ${builtins.concatStringsSep "\n" (builtins.map mkExe exes)}
   '';

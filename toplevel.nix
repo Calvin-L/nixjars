@@ -40,10 +40,10 @@ collect-recursive = d: succ: seen:
     else [hd] ++ (collect-recursive (tl ++ succ hd) succ (seen // {"${hd_as_str}"=true;}));
 
 compileClasspath = deps:
-  builtins.concatStringsSep ":" (builtins.map (d: "${d}/${d.outputJar}") (builtins.filter (d: d ? outputJar) deps));
+  builtins.concatStringsSep ":" (builtins.map (d: "${if d ? lib then d.lib else d.out}/${d.outputJar}") (builtins.filter (d: d ? outputJar) deps));
 
 runtimeClasspath = deps:
-  builtins.concatStringsSep ":" (builtins.map (d: "${d}/${d.outputJar}") (builtins.filter (d: d ? outputJar) (collect-recursive deps (d: if d ? outputJar then d.buildInputs ++ d.runtimeOnlyDeps else []) {})));
+  builtins.concatStringsSep ":" (builtins.map (d: "${if d ? lib then d.lib else d.out}/${d.outputJar}") (builtins.filter (d: d ? outputJar) (collect-recursive deps (d: if d ? outputJar then d.buildInputs ++ d.runtimeOnlyDeps else []) {})));
 
 self = (rec {
 
