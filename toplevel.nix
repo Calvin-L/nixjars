@@ -302,6 +302,10 @@ self = (rec {
 
   lombok = callPackage ./java/lombok.nix {};
 
+  vavr-match = callPackage ./java/vavr-match.nix {};
+
+  vavr = callPackage ./java/vavr.nix {};
+
 } // (packageOverrides self));
 
 in self
