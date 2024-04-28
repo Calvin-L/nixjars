@@ -7,7 +7,7 @@ buildJavaPackage rec {
   src = fetchFromGitHub {
     owner = "java-schema-utilities";
     repo = "relaxng-datatype-java";
-    rev = "${pname}-${version}";
+    rev = "relaxngDatatype-${version}";
     hash = "sha256-XK5UILKaYQYIbnXzEFPs2UIDCrHNxmFkiJ5yake9dx4=";
   };
 }
