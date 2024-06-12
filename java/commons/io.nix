@@ -3,18 +3,14 @@
 
 buildJavaPackage rec {
   pname = "commons-io";
-  version = "2.15.1";
+  version = "2.16.1";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "apache";
     repo = "commons-io";
     rev = "rel/commons-io-${version}";
-    hash = "sha256-6PiXQowGAK3VGvySWk11Jmskhfn0MSkg/4SklaRyThE=";
+    hash = "sha256-BSTfju2X8TEIwDeFGrF98CVshZoscZLhv5XjG7YaxEE=";
   };
-  # sourceEncoding = "ISO-8859-1";
-  deps = [
-    # commons-lang
-  ];
   # checkPhase = testWithJUnit5 {
   #   testDeps = [
   #     commons-lang
