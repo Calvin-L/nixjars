@@ -165,6 +165,7 @@ self = (rec {
   commons-logging = callPackage ./java/commons/logging.nix {};
   commons-lang = callPackage ./java/commons/lang.nix {};
   commons-text = callPackage ./java/commons/text.nix {};
+  commons-codec = callPackage ./java/commons/codec.nix {};
   commons-compress = callPackage ./java/commons/compress.nix {};
   commons-csv = callPackage ./java/commons/csv.nix {};
   commons-bcel = callPackage ./java/commons/bcel.nix {};
