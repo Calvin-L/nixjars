@@ -18,13 +18,13 @@ buildJavaPackage {
   #   rev = "3ea322254974cd39a4dd336fff12b203a6743dd1";
   #   hash = "sha256-69oGSRS7pSOyoWcK2dmGheIBX8WZXdjUvRpOKqDiQTQ=";
   # };
-  version = "1.8.0.2023.11.1";
+  version = "1.8.0.2024.6.12";
   src = fetchFromGitHub {
     owner = "tlaplus";
     repo = "tlaplus";
-    rev = "9b80a9b934c5df43a7b426d5b32a2cc1641a12e7";
-    sparseCheckout = ["tlatools"];
-    hash = "sha256-pBFL2u2jGCoJxFMMnp17tISDqOfPzhGRqV4GHvidWF4=";
+    rev = "10033c2fd3528ec9d6a20f552f4e1f4a2dba1394";
+    sparseCheckout = ["tlatools/org.lamport.tlatools"];
+    hash = "sha256-7/BGMnv9Nf5yUeOIiQL0Vb0fFFaHJRX4qweAfAfhl3g=";
   };
   srcDir = "tlatools/org.lamport.tlatools/src";
   resourceDir = "tlatools/org.lamport.tlatools/src";
