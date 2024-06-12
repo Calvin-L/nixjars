@@ -4,14 +4,14 @@
  testWithJUnit4, junit4, hamcrest}:
 
 let
-  version = "2.17.0";
+  version = "2.17.1";
   license = lib.licenses.asl20;
 
   modules-java8-src = fetchFromGitHub {
     owner = "FasterXML";
     repo = "jackson-modules-java8";
     rev = "jackson-modules-java8-${version}";
-    hash = "sha256-hXJjJ3aeBR4Sx5a5HRmKAqJwSTmkuXHg3Rxczvc/1ys=";
+    hash = "sha256-z3bzcu76K9YMQS3GkQpBcdbo1jd9tDsje0Jf4f7GolA=";
   };
 in
 {
@@ -23,7 +23,7 @@ in
       owner = "FasterXML";
       repo = pname;
       rev = "${pname}-${version}";
-      hash = "sha256-cLu0qVrQRSPP0g8ME0K7cHWz6JnTTmZbOBBDbVp+La8=";
+      hash = "sha256-ejlllNXBUxxtqpLKYaZLEFDJ8jEHXZWw+cxkqLrJ44o=";
     };
     deps = [
       fastdoubleparser
@@ -32,13 +32,13 @@ in
       F=src/main/java/com/fasterxml/jackson/core/json/PackageVersion.java
       mv "$F.in" "$F"
       substituteInPlace "$F" \
-        --replace '@package@' 'com.fasterxml.jackson.core.json'
+        --replace-fail '@package@' 'com.fasterxml.jackson.core.json'
       substituteInPlace "$F" \
-        --replace '@projectversion@' '${version}'
+        --replace-fail '@projectversion@' '${version}'
       substituteInPlace "$F" \
-        --replace '@projectgroupid@' 'com.fasterxml.jackson.core'
+        --replace-fail '@projectgroupid@' 'com.fasterxml.jackson.core'
       substituteInPlace "$F" \
-        --replace '@projectartifactid@' 'jackson-core'
+        --replace-fail '@projectartifactid@' 'jackson-core'
 
       rm -rf src/test/java/com/fasterxml/jackson/failing
     '';
@@ -59,7 +59,7 @@ in
       owner = "FasterXML";
       repo = pname;
       rev = "${pname}-${version}";
-      hash = "sha256-NqCSUlhzkpjShsHTp3INedASg8+z0XmJNiP4Ug476zU=";
+      hash = "sha256-SZ+b0EB+NzlGxA8inZI+2OEkPkwBQ0oHwm3kPZ8BC4w=";
     };
   };
 
@@ -70,7 +70,7 @@ in
       owner = "FasterXML";
       repo = pname;
       rev = "${pname}-${version}";
-      hash = "sha256-HG8TpXFPSQ8/Wt5kUGG6OpQxxvi0RM7LYhvi/K3i89A=";
+      hash = "sha256-Iv11YQb3shOPt7Y/4aQXq+6qpMYYjkTdnOkForqb0lE=";
     };
     compileOnlyDeps = [
       jackson.annotations
@@ -86,13 +86,13 @@ in
       F=src/main/java/com/fasterxml/jackson/databind/cfg/PackageVersion.java
       mv "$F.in" "$F"
       substituteInPlace "$F" \
-        --replace '@package@' 'com.fasterxml.jackson.databind.cfg'
+        --replace-fail '@package@' 'com.fasterxml.jackson.databind.cfg'
       substituteInPlace "$F" \
-        --replace '@projectversion@' '${version}'
+        --replace-fail '@projectversion@' '${version}'
       substituteInPlace "$F" \
-        --replace '@projectgroupid@' 'com.fasterxml.jackson.core'
+        --replace-fail '@projectgroupid@' 'com.fasterxml.jackson.core'
       substituteInPlace "$F" \
-        --replace '@projectartifactid@' 'jackson-databind'
+        --replace-fail '@projectartifactid@' '${pname}'
 
       rm -rf src/test/java/com/fasterxml/jackson/failing
       rm -v src/test/java/com/fasterxml/jackson/databind/MapperFootprintTest.java
@@ -120,9 +120,9 @@ in
       owner = "FasterXML";
       repo = "jackson-dataformats-binary";
       rev = "${repo}-${version}";
-      hash = "sha256-w+n01lRb0L1KnUfouBgkjCbAksTSbUHt8igCPQhaxf4=";
+      hash = "sha256-bEdZo/aTdomKMVON6OcI72qE4tgsiYWFDdCdOyIZoxg=";
     };
-    srcDir = "cbor/src/main/java";
+    sourceRoot = "${src.name}/cbor";
     compileOnlyDeps = [
       jackson.annotations
     ];
@@ -131,16 +131,16 @@ in
       jackson.databind
     ];
     patchPhase = ''
-      F=cbor/src/main/java/com/fasterxml/jackson/dataformat/cbor/PackageVersion.java
+      F=src/main/java/com/fasterxml/jackson/dataformat/cbor/PackageVersion.java
       mv "$F.in" "$F"
       substituteInPlace "$F" \
-        --replace '@package@' 'com.fasterxml.jackson.dataformat.cbor'
+        --replace-fail '@package@' 'com.fasterxml.jackson.dataformat.cbor'
       substituteInPlace "$F" \
-        --replace '@projectversion@' '${version}'
+        --replace-fail '@projectversion@' '${version}'
       substituteInPlace "$F" \
-        --replace '@projectgroupid@' 'com.fasterxml.jackson.core'
+        --replace-fail '@projectgroupid@' 'com.fasterxml.jackson.core'
       substituteInPlace "$F" \
-        --replace '@projectartifactid@' 'jackson-databind'
+        --replace-fail '@projectartifactid@' '${pname}'
     '';
   };
 
@@ -151,9 +151,9 @@ in
       owner = "FasterXML";
       repo = "jackson-dataformats-text";
       rev = "${repo}-${version}";
-      hash = "sha256-P1SqPRDvXFSrTIFtLNM+7a0jrXgU9lCUH8dlGLrqF5k=";
+      hash = "sha256-Gg94omdgPR94eaZ37OAzmdmyDwg0QZwG56QKQwsXJ2k=";
     };
-    srcDir = "yaml/src/main/java";
+    sourceRoot = "${src.name}/yaml";
     compileOnlyDeps = [
       jackson.annotations
     ];
@@ -163,16 +163,16 @@ in
       snakeyaml
     ];
     patchPhase = ''
-      F=yaml/src/main/java/com/fasterxml/jackson/dataformat/yaml/PackageVersion.java
+      F=src/main/java/com/fasterxml/jackson/dataformat/yaml/PackageVersion.java
       mv "$F.in" "$F"
       substituteInPlace "$F" \
-        --replace '@package@' 'com.fasterxml.jackson.dataformat.yaml'
+        --replace-fail '@package@' 'com.fasterxml.jackson.dataformat.yaml'
       substituteInPlace "$F" \
-        --replace '@projectversion@' '${version}'
+        --replace-fail '@projectversion@' '${version}'
       substituteInPlace "$F" \
-        --replace '@projectgroupid@' 'com.fasterxml.jackson.core'
+        --replace-fail '@projectgroupid@' 'com.fasterxml.jackson.core'
       substituteInPlace "$F" \
-        --replace '@projectartifactid@' 'jackson-databind'
+        --replace-fail '@projectartifactid@' '${pname}'
     '';
   };
 
@@ -183,7 +183,7 @@ in
       owner = "FasterXML";
       repo = pname;
       rev = "${pname}-${version}";
-      hash = "sha256-pX3waM8+OfN4m//ISc14d5dw23i8n2xxwIyv0hYjWjY=";
+      hash = "sha256-At52NTS9gcugIbcFIbDKJYl0WQGbd0Id71ZMXmop/0A=";
     };
     compileOnlyDeps = [
       jackson.annotations
@@ -199,13 +199,13 @@ in
       F=src/main/java/com/fasterxml/jackson/dataformat/xml/PackageVersion.java
       mv "$F.in" "$F"
       substituteInPlace "$F" \
-        --replace '@package@' 'com.fasterxml.jackson.dataformat.xml'
+        --replace-fail '@package@' 'com.fasterxml.jackson.dataformat.xml'
       substituteInPlace "$F" \
-        --replace '@projectversion@' '${version}'
+        --replace-fail '@projectversion@' '${version}'
       substituteInPlace "$F" \
-        --replace '@projectgroupid@' 'com.fasterxml.jackson.core'
+        --replace-fail '@projectgroupid@' 'com.fasterxml.jackson.core'
       substituteInPlace "$F" \
-        --replace '@projectartifactid@' 'jackson-databind'
+        --replace-fail '@projectartifactid@' '${pname}'
     '';
   };
 
@@ -216,23 +216,23 @@ in
       owner = "FasterXML";
       repo = "jackson-jr";
       rev = "jackson-jr-parent-${version}";
-      hash = "sha256-XVBwenzAKtx5me6NjDCs2ZxaHX4wX0O1AhLz9quH+Kk=";
+      hash = "sha256-Yq2bTpOYCzkWuEF4fw82tmfx5Hq8o4tr1ScLZrjxS8U=";
     };
-    srcDir = "jr-objects/src/main/java";
+    sourceRoot = "${src.name}/jr-objects";
     deps = [
       jackson.core
     ];
     patchPhase = ''
-      F=jr-objects/src/main/java/com/fasterxml/jackson/jr/ob/PackageVersion.java
+      F=src/main/java/com/fasterxml/jackson/jr/ob/PackageVersion.java
       mv "$F.in" "$F"
       substituteInPlace "$F" \
-        --replace '@package@' 'com.fasterxml.jackson.jr.ob'
+        --replace-fail '@package@' 'com.fasterxml.jackson.jr.ob'
       substituteInPlace "$F" \
-        --replace '@projectversion@' '${version}'
+        --replace-fail '@projectversion@' '${version}'
       substituteInPlace "$F" \
-        --replace '@projectgroupid@' 'com.fasterxml.jackson.jr'
+        --replace-fail '@projectgroupid@' 'com.fasterxml.jackson.jr'
       substituteInPlace "$F" \
-        --replace '@projectartifactid@' '${pname}'
+        --replace-fail '@projectartifactid@' '${pname}'
     '';
   };
 
@@ -250,13 +250,13 @@ in
       F=src/main/java/com/fasterxml/jackson/module/paramnames/PackageVersion.java
       mv "$F.in" "$F"
       substituteInPlace "$F" \
-        --replace '@package@' 'com.fasterxml.jackson.module.paramnames'
+        --replace-fail '@package@' 'com.fasterxml.jackson.module.paramnames'
       substituteInPlace "$F" \
-        --replace '@projectversion@' '${version}'
+        --replace-fail '@projectversion@' '${version}'
       substituteInPlace "$F" \
-        --replace '@projectgroupid@' 'com.fasterxml.jackson.module'
+        --replace-fail '@projectgroupid@' 'com.fasterxml.jackson.module'
       substituteInPlace "$F" \
-        --replace '@projectartifactid@' '${pname}'
+        --replace-fail '@projectartifactid@' '${pname}'
     '';
 
     # 2024/3/25: fails but I'm not sure why
@@ -282,13 +282,13 @@ in
       F=src/main/java/com/fasterxml/jackson/datatype/jsr310/PackageVersion.java
       mv "$F.in" "$F"
       substituteInPlace "$F" \
-        --replace '@package@' 'com.fasterxml.jackson.datatype.jsr310'
+        --replace-fail '@package@' 'com.fasterxml.jackson.datatype.jsr310'
       substituteInPlace "$F" \
-        --replace '@projectversion@' '${version}'
+        --replace-fail '@projectversion@' '${version}'
       substituteInPlace "$F" \
-        --replace '@projectgroupid@' 'com.fasterxml.jackson.module'
+        --replace-fail '@projectgroupid@' 'com.fasterxml.jackson.module'
       substituteInPlace "$F" \
-        --replace '@projectartifactid@' '${pname}'
+        --replace-fail '@projectartifactid@' '${pname}'
     '';
 
     # 2024/3/25: fails but I'm not sure why
@@ -312,13 +312,13 @@ in
       F=src/main/java/com/fasterxml/jackson/datatype/jdk8/PackageVersion.java
       mv "$F.in" "$F"
       substituteInPlace "$F" \
-        --replace '@package@' 'com.fasterxml.jackson.datatype.jdk8'
+        --replace-fail '@package@' 'com.fasterxml.jackson.datatype.jdk8'
       substituteInPlace "$F" \
-        --replace '@projectversion@' '${version}'
+        --replace-fail '@projectversion@' '${version}'
       substituteInPlace "$F" \
-        --replace '@projectgroupid@' 'com.fasterxml.jackson.module'
+        --replace-fail '@projectgroupid@' 'com.fasterxml.jackson.module'
       substituteInPlace "$F" \
-        --replace '@projectartifactid@' '${pname}'
+        --replace-fail '@projectartifactid@' '${pname}'
     '';
     checkPhase = testWithJUnit4 {
       testDeps = [
@@ -335,7 +335,7 @@ in
       owner = "FasterXML";
       repo = pname;
       rev = "${pname}-${version}";
-      hash = "sha256-8YGrdw7A6qYzl1W6rbz6tSCH+a0IIQmZvVRgXfJVVe8=";
+      hash = "sha256-aV56pCFdeaY8ai7CJDhNdx3t5QRrI73PIi5p5sSFeAo=";
     };
     deps = [
       jackson.annotations
@@ -347,13 +347,13 @@ in
       F=src/main/java/com/fasterxml/jackson/datatype/joda/PackageVersion.java
       mv "$F.in" "$F"
       substituteInPlace "$F" \
-        --replace '@package@' 'com.fasterxml.jackson.datatype.joda'
+        --replace-fail '@package@' 'com.fasterxml.jackson.datatype.joda'
       substituteInPlace "$F" \
-        --replace '@projectversion@' '${version}'
+        --replace-fail '@projectversion@' '${version}'
       substituteInPlace "$F" \
-        --replace '@projectgroupid@' 'com.fasterxml.jackson.datatype'
+        --replace-fail '@projectgroupid@' 'com.fasterxml.jackson.datatype'
       substituteInPlace "$F" \
-        --replace '@projectartifactid@' '${pname}'
+        --replace-fail '@projectartifactid@' '${pname}'
     '';
     checkPhase = testWithJUnit4 {
       testDeps = [
