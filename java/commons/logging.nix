@@ -1,17 +1,21 @@
-{lib, fetchurl, buildJavaPackage, log4j-1_2-api, jakarta-servlet-api}:
+{lib, fetchFromGitHub, buildJavaPackage,
+ log4j-1_2-api, log4j-api, slf4j, jakarta-servlet-api}:
 
 buildJavaPackage rec {
-  pname = "apache-commons-logging";
-  version = "1.2";
+  pname = "commons-logging";
+  version = "1.3.2";
   license = lib.licenses.asl20;
-  src = fetchurl {
-    url = "https://downloads.apache.org/commons/logging/source/commons-logging-${version}-src.tar.gz";
-    sha256 = "49665da5a60d033e6dff40fe0a7f9173e886ae859ce6096c1afe34c48b677c81";
+  src = fetchFromGitHub {
+    owner = "apache";
+    repo = "commons-logging";
+    rev = "rel/commons-logging-${version}";
+    hash = "sha256-S5NlAnG1fd7kotgIosP9P6tlxvrOjKFJvlaQdUw5BYg=";
   };
   compileOnlyDeps = [
     log4j-1_2-api
-    # log4j-api
+    log4j-api
     # log4j-slf4j
+    slf4j.api
     # logkit
     # avalon-framework
     # avalon-logkit
