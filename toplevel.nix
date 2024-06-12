@@ -81,8 +81,6 @@ self = (rec {
 
   no-class-dups = callPackage ./java/no-class-dups {};
 
-  # avalon-logkit = callPackage ./java/avalon-logkit.nix {};
-
   brotli-dec = callPackage ./java/brotli-dec.nix {};
 
   tukaani-xz = callPackage ./java/tukaani-xz.nix {};
