@@ -4,13 +4,13 @@
 
 buildJavaPackage rec {
   pname = "apache-commons-text";
-  version = "1.11.0";
+  version = "1.12.0";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "apache";
     repo = "commons-text";
     rev = "rel/commons-text-${version}";
-    hash = "sha256-rsfNGOSDgKJgqdiYHxn/ZPZhQvoEdc6acDskj+hOmyA=";
+    hash = "sha256-iq+2vZMl2IkFhd9sbiQptypq+9kAu8QUacabrim5dIw=";
   };
   sourceEncoding = "ISO-8859-1";
 
