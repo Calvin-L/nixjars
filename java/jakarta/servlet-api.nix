@@ -8,7 +8,7 @@ buildJavaPackage rec {
     owner = "jakartaee";
     repo = "servlet";
     rev = "${version}-RELEASE";
-    hash = "sha256-Asr/M7C/loSRWQPI5ibBjgmF56+laS8QXP6mI2saCMc=";
+    hash = "sha256-641Zny3fCQbuERiewC7luO/LMzXRkN1q5Oml+8wPnAo=";
   };
   sourceRoot = "${src.name}/api";
 
