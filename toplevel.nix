@@ -77,6 +77,8 @@ self = (rec {
     runtimeClasspath = runtimeClasspath;
   };
 
+  apfloat = callPackage ./java/apfloat.nix {};
+
   fetchMaven = callPackage ./support-functions/fetchMaven.nix {};
 
   no-class-dups = callPackage ./java/no-class-dups {};
