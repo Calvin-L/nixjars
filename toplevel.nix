@@ -6,9 +6,7 @@ recurseIntoAttrs = lib.attrsets.recurseIntoAttrs;
 
 callPackage = lib.callPackageWith (pkgs // self);
 
-precompiledJar = callPackage ./support-functions/precompiledJar.nix {
-  runtimeClasspath = runtimeClasspath;
-};
+precompiledJar = callPackage ./support-functions/precompiledJar.nix {};
 
 antlr3-bootstrap = precompiledJar rec {
   pname = "antlr-bootstrap";
@@ -51,30 +49,24 @@ self = (rec {
     callPackage
     precompiledJar
     jdk
-    jre;
+    jre
+    compileClasspath
+    runtimeClasspath;
 
   testWithJUnit4 = callPackage ./support-functions/testWithJUnit4.nix {
     buildDirName = buildDirName;
-    compileClasspath = compileClasspath;
-    runtimeClasspath = runtimeClasspath;
   };
 
   testWithJUnit5 = callPackage ./support-functions/testWithJUnit5.nix {
     buildDirName = buildDirName;
-    compileClasspath = compileClasspath;
-    runtimeClasspath = runtimeClasspath;
   };
 
   testWithTestNG = callPackage ./support-functions/testWithTestNG.nix {
     buildDirName = buildDirName;
-    compileClasspath = compileClasspath;
-    runtimeClasspath = runtimeClasspath;
   };
 
   buildJavaPackage = callPackage ./support-functions/buildJavaPackage.nix {
     buildDirName = buildDirName;
-    compileClasspath = compileClasspath;
-    runtimeClasspath = runtimeClasspath;
   };
 
   apfloat = callPackage ./java/apfloat.nix {};
@@ -228,7 +220,7 @@ self = (rec {
 
   classgraph = callPackage ./java/classgraph.nix {};
 
-  lsp4j = callPackage ./java/lsp4j.nix { runtimeClasspath=runtimeClasspath; };
+  lsp4j = callPackage ./java/lsp4j.nix {};
 
   tlatools = callPackage ./java/tlatools.nix {};
   tla-community-modules = callPackage ./java/tla-community-modules.nix {};
