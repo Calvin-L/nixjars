@@ -160,6 +160,8 @@ self = (rec {
 
   jgrapht = recurseIntoAttrs (callPackage ./java/jgrapht.nix {});
 
+  jungrapht = recurseIntoAttrs (callPackage ./java/jungrapht.nix {});
+
   jheaps = callPackage ./java/jheaps.nix {};
 
   findbugs-annotations = spotbugs-annotations;
