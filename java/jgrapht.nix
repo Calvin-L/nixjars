@@ -26,7 +26,7 @@ in {
   core = buildJavaPackage {
     pname = "jgrapht-core";
     inherit version license src;
-    sourceRoot = "source/jgrapht-core";
+    sourceRoot = "${src.name}/jgrapht-core";
     deps = [
       jheaps
       apfloat

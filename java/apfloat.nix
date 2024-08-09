@@ -11,7 +11,7 @@ buildJavaPackage rec {
     rev = version;
     hash = "sha256-MGkENaSDLy1CdUsrfZJ5HbFK5tJ/32b7MwgphHv8ldE=";
   };
-  sourceRoot = "source/apfloat";
+  sourceRoot = "${src.name}/apfloat";
   nativeBuildInputs = [
     rsync
     python3

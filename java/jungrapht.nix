@@ -16,7 +16,7 @@ in {
   layout = buildJavaPackage {
     pname = "jungrapht-layout";
     inherit version license src;
-    sourceRoot = "source/jungrapht-layout";
+    sourceRoot = "${src.name}/jungrapht-layout";
     deps = [
       jgrapht.core
       jheaps
@@ -28,7 +28,7 @@ in {
   visualization = buildJavaPackage {
     pname = "jungrapht-visualization";
     inherit version license src;
-    sourceRoot = "source/jungrapht-visualization";
+    sourceRoot = "${src.name}/jungrapht-visualization";
     deps = [
       jgrapht.core
       jungrapht.layout
