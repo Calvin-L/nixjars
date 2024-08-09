@@ -1,5 +1,5 @@
 {lib, buildJavaPackage, fetchFromGitHub,
- gson, jakarta-mail, jline, lsp4j}:
+ gson, jakarta-mail, jline, lsp4j, commons-math}:
 
 buildJavaPackage {
   pname = "tlatools";
@@ -35,7 +35,11 @@ buildJavaPackage {
     jline.terminal
     lsp4j.debug
     lsp4j.jsonrpc
+    commons-math
   ];
+  patchPhase = ''
+    rm -rfv tlatools/org.lamport.tlatools/src/org/apache
+  '';
   configurePhase = ''
     substituteInPlace tlatools/org.lamport.tlatools/src/util/MailSender.java \
       --replace 'javax.mail' 'jakarta.mail'
