@@ -158,6 +158,8 @@ self = (rec {
 
   jna-platform = callPackage ./java/jna-platform.nix {};
 
+  jgrapht = recurseIntoAttrs (callPackage ./java/jgrapht.nix {});
+
   jheaps = callPackage ./java/jheaps.nix {};
 
   findbugs-annotations = spotbugs-annotations;
