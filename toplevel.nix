@@ -156,6 +156,8 @@ self = (rec {
 
   jna-platform = callPackage ./java/jna-platform.nix {};
 
+  jheaps = callPackage ./java/jheaps.nix {};
+
   findbugs-annotations = spotbugs-annotations;
 
   spotbugs-annotations = callPackage ./java/spotbugs-annotations.nix {};
