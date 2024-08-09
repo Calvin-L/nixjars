@@ -231,6 +231,7 @@ self = (rec {
   lsp4j = callPackage ./java/lsp4j.nix { runtimeClasspath=runtimeClasspath; };
 
   tlatools = callPackage ./java/tlatools.nix {};
+  tla-community-modules = callPackage ./java/tla-community-modules.nix {};
 
   gson = callPackage ./java/gson.nix {};
 
