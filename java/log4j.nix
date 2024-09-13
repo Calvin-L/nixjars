@@ -70,11 +70,11 @@ rec {
     ];
     configurePhase = ''
       substituteInPlace log4j-core/src/main/java/org/apache/logging/log4j/core/net/MimeMessageBuilder.java \
-        --replace 'javax.mail' 'jakarta.mail'
+        --replace-fail 'javax.mail' 'jakarta.mail'
       substituteInPlace log4j-core/src/main/java/org/apache/logging/log4j/core/net/SmtpManager.java \
-        --replace 'javax.mail' 'jakarta.mail'
+        --replace-fail 'javax.mail' 'jakarta.mail'
       substituteInPlace log4j-core/src/main/java/org/apache/logging/log4j/core/net/SmtpManager.java \
-        --replace 'javax.activation' 'jakarta.activation'
+        --replace-fail 'javax.activation' 'jakarta.activation'
     '';
   };
 

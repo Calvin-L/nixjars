@@ -53,7 +53,7 @@ in buildJavaPackage {
   configurePhase = ''
     libpath=$(find ${zstd-jni-native}/lib -iname 'libzstd-jni-*' -type f | head -n1)
     substituteInPlace src/main/java/com/github/luben/zstd/util/Native.java \
-      --replace 'System.getProperty(nativePathOverride)' "\"$libpath\""
+      --replace-fail 'System.getProperty(nativePathOverride)' "\"$libpath\""
 
     cat >src/main/java/com/github/luben/zstd/util/ZstdVersion.java <<EOF
       package com.github.luben.zstd.util;

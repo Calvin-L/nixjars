@@ -56,9 +56,9 @@ in {
       libpath=$(find ${jline.native-jni}/lib -iname 'libjline-jni.*' -type f | head -n1)
       test -e "$libpath"
       substituteInPlace src/main/java/org/jline/nativ/JLineNativeLoader.java \
-        --replace 'String jlineNativeLibraryPath = System.getProperty("library.jline.path");' "String jlineNativeLibraryPath = \"$(dirname "$libpath")\";"
+        --replace-fail 'String jlineNativeLibraryPath = System.getProperty("library.jline.path");' "String jlineNativeLibraryPath = \"$(dirname "$libpath")\";"
       substituteInPlace src/main/java/org/jline/nativ/JLineNativeLoader.java \
-        --replace 'String jlineNativeLibraryName = System.getProperty("library.jline.name");' "String jlineNativeLibraryName = \"$(basename "$libpath")\";"
+        --replace-fail 'String jlineNativeLibraryName = System.getProperty("library.jline.name");' "String jlineNativeLibraryName = \"$(basename "$libpath")\";"
     '';
     checkPhase = ''
       echo 'Testing JNI import...'

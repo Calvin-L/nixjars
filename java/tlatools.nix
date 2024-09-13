@@ -42,7 +42,7 @@ buildJavaPackage {
   '';
   configurePhase = ''
     substituteInPlace tlatools/org.lamport.tlatools/src/util/MailSender.java \
-      --replace 'javax.mail' 'jakarta.mail'
+      --replace-fail 'javax.mail' 'jakarta.mail'
   '';
   exes = [
     { name = "tlc2"; class = "tlc2.TLC"; }

@@ -27,7 +27,7 @@ buildJavaPackage rec {
   ];
   patchPhase = ''
     rm src/main/java/org/easymock/internal/AndroidClassProxyFactory.java
-    substituteInPlace src/main/java/org/easymock/internal/MocksControl.java --replace \
+    substituteInPlace src/main/java/org/easymock/internal/MocksControl.java --replace-fail \
       'return classProxyFactory = new AndroidClassProxyFactory();' \
       ""
   '';

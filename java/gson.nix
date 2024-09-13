@@ -21,7 +21,7 @@ in buildJavaPackage rec {
       'src/main/java-templates/com/google/gson/internal/GsonBuildConfig.java' \
       'src/main/java/com/google/gson/internal/GsonBuildConfig.java'
     substituteInPlace 'src/main/java/com/google/gson/internal/GsonBuildConfig.java' \
-      --replace '${dollar}{project.version}' '${version}'
+      --replace-fail '${dollar}{project.version}' '${version}'
 
     rm src/test/java/com/google/gson/functional/EnumWithObfuscatedTest.java
     rm src/test/java/com/google/gson/regression/OSGiTest.java

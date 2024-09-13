@@ -56,8 +56,8 @@ rec {
     configurePhase = ''
       rm -r bundles/org.eclipse.osgi/container/src/org/eclipse/osgi/internal/cds
       substituteInPlace bundles/org.eclipse.osgi/container/src/org/eclipse/osgi/internal/hookregistry/HookRegistry.java \
-        --replace 'import org.eclipse.osgi.internal.cds.CDSHookConfigurator;' "" \
-        --replace 'configurators.add(CDSHookConfigurator.class.getName());' ""
+        --replace-fail 'import org.eclipse.osgi.internal.cds.CDSHookConfigurator;' "" \
+        --replace-fail 'configurators.add(CDSHookConfigurator.class.getName());' ""
     '';
   };
 

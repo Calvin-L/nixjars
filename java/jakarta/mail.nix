@@ -18,7 +18,7 @@ buildJavaPackage rec {
   # note `mv` below; don't need to include this file in resources
   configurePhase = ''
     mv ${srcDir}/../resources/jakarta/mail/Version.java ${srcDir}/jakarta/mail/Version.java
-    substituteInPlace ${srcDir}/jakarta/mail/Version.java --replace \
+    substituteInPlace ${srcDir}/jakarta/mail/Version.java --replace-fail \
       '$'''{mail.version}' \
       '${version}'
   '';

@@ -26,7 +26,7 @@ buildJavaPackage {
   #   rm -r org/iso_relax/ant/
 
   #   substituteInPlace org/iso_relax/jaxp/ValidatingDocumentBuilderFactory.java \
-  #     --replace 'public boolean isValidating()' '
+  #     --replace-fail 'public boolean isValidating()' '
   # public void setFeature(String name, boolean value) throws ParserConfigurationException {
   #     throw new ParserConfigurationException();
   # }

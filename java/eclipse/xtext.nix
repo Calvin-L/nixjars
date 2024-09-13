@@ -297,7 +297,7 @@ rec {
     configurePhase = ''
       rm org.eclipse.xtend.core/src/org/eclipse/xtend/core/compiler/batch/XtendCompilerTester.java
       substituteInPlace org.eclipse.xtend.core/src/org/eclipse/xtend/core/parser/antlr/internal/FlexTokenSource.java \
-        --replace 'return Token.EOF_TOKEN;' 'return new CommonToken(Token.EOF);'
+        --replace-fail 'return Token.EOF_TOKEN;' 'return new CommonToken(Token.EOF);'
     '';
     exes = [
       # https://stackoverflow.com/questions/14092217/command-line-compiler-for-xtend

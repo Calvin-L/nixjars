@@ -26,11 +26,11 @@ in {
     ];
     configurePhase = ''
       substituteInPlace plugins/org.eclipse.emf.common/src/org/eclipse/emf/common/archive/ArchiveURLConnection.java \
-        --replace 'return yield(' 'return this.yield('
+        --replace-fail 'return yield(' 'return this.yield('
       substituteInPlace plugins/org.eclipse.emf.common/src/org/eclipse/emf/common/archive/ArchiveURLConnection.java \
-        --replace ': yield(' ': this.yield('
+        --replace-fail ': yield(' ': this.yield('
       substituteInPlace plugins/org.eclipse.emf.common/src/org/eclipse/emf/common/util/BasicEMap.java \
-        --replace 'return yield(' 'return this.yield('
+        --replace-fail 'return yield(' 'return this.yield('
     '';
   };
 
@@ -55,7 +55,7 @@ in {
     # > a method called yield, qualify the yield with a receiver or type name)
     configurePhase = ''
       substituteInPlace plugins/org.eclipse.emf.ecore/src/org/eclipse/emf/ecore/util/EcoreUtil.java \
-        --replace '= yield(' '= this.yield('
+        --replace-fail '= yield(' '= this.yield('
     '';
   };
 

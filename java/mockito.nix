@@ -16,10 +16,10 @@ buildJavaPackage rec {
   };
   patchPhase = ''
     substituteInPlace src/main/java/org/mockito/internal/creation/bytebuddy/InlineBytecodeGenerator.java \
-      --replace 'net.bytebuddy.jar.asm.' 'org.objectweb.asm.' \
+      --replace-fail 'net.bytebuddy.jar.asm.' 'org.objectweb.asm.' \
 
     substituteInPlace src/main/java/org/mockito/internal/creation/bytebuddy/MockMethodAdvice.java \
-      --replace 'net.bytebuddy.jar.asm.' 'org.objectweb.asm.' \
+      --replace-fail 'net.bytebuddy.jar.asm.' 'org.objectweb.asm.' \
   '';
 
   # https://github.com/mockito/mockito/blob/9821ce031942a21e2f7333df38cf3d680cceaf76/gradle/mockito-core/inline-mock.gradle#L7
