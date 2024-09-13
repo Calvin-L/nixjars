@@ -72,22 +72,23 @@ stdenvNoCC.mkDerivation (
   buildPhase = ''
     runHook preBuild
 
-    mkdir ${buildDirName}
-    mkdir ${buildDirName}/classes
-    export CLASSPATH='${compileClasspath (deps ++ compileOnlyDeps)}'
-    echo " --> Compile classpath: '$CLASSPATH'"
-    ${if actuallyDoClassDupCheck then "no-class-dups \"$CLASSPATH\"" else "echo 'Skipping class dup check'"}
+    export CLASS_OUTPUT_DIR='${buildDirName}/classes'
+    mkdir -p "$CLASS_OUTPUT_DIR"
+    export COMPILE_CLASSPATH='${compileClasspath (deps ++ compileOnlyDeps)}'
+    echo " --> Compile classpath: '$COMPILE_CLASSPATH'"
+    ${if actuallyDoClassDupCheck then "no-class-dups \"$COMPILE_CLASSPATH\"" else "echo 'Skipping class dup check'"}
     find '${srcDir}' -iname '*.java' -type f | sort >${buildDirName}/java-files
     echo ' --> Compiling' $(wc -l < ${buildDirName}/java-files) '.java files'
     javac \
       -encoding ${sourceEncoding} \
-      --module-path "$CLASSPATH" \
+      -classpath "$COMPILE_CLASSPATH" \
+      --module-path "$COMPILE_CLASSPATH" \
       ${lib.strings.escapeShellArgs annotationsArgs} \
       ${lib.strings.escapeShellArgs extraJavacArgs} \
       @${buildDirName}/java-files \
-      -d ${buildDirName}/classes
+      -d "$CLASS_OUTPUT_DIR"
     ${copyResources}
-    export CLASSPATH="${buildDirName}/classes:$CLASSPATH"
+    export RUNTIME_CLASSPATH="$CLASS_OUTPUT_DIR:${runtimeClasspath (deps ++ runtimeOnlyDeps)}"
 
     echo 'Manifest:'
     touch MANIFEST.MF
@@ -110,7 +111,7 @@ stdenvNoCC.mkDerivation (
       --date='2000-01-01T00:00:00Z' \
       --manifest=MANIFEST.MF \
       -f "${dollar}{!outputLib}/${outputJar}" \
-      -C ${buildDirName}/classes .
+      -C "$CLASS_OUTPUT_DIR" .
     ${builtins.concatStringsSep "\n" (builtins.map mkExe exes)}
   '';
   meta = (meta // {

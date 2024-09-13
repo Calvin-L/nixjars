@@ -69,8 +69,8 @@ in {
           }
         }
       EOF
-      javac Test.java
-      java Test
+      javac -classpath "$CLASS_OUTPUT_DIR" Test.java
+      java -classpath ".:$RUNTIME_CLASSPATH" Test
     '';
   };
 

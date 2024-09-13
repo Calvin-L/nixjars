@@ -7,13 +7,14 @@
       false
     fi
 
-    export CLASSPATH="$CLASSPATH:${compileClasspath ([testng.core-api] ++ testDeps)}"
-    echo " --> Test compile classpath: $CLASSPATH"
+    export TEST_COMPILE_CLASSPATH="$CLASS_OUTPUT_DIR:$COMPILE_CLASSPATH:${compileClasspath ([testng.core-api] ++ testDeps)}"
+    echo " --> Test compile classpath: $TEST_COMPILE_CLASSPATH"
 
     find ${testSrcDir} -iname '*.java' -type f | sort >${buildDirName}/java-files-test
     echo ' --> Compiling' $(wc -l < ${buildDirName}/java-files-test) '.java files'
     mkdir ${buildDirName}/test-classes
     javac \
+      -classpath "$TEST_COMPILE_CLASSPATH" \
       --module-path "$CLASSPATH" \
       @${buildDirName}/java-files-test \
       -d ${buildDirName}/test-classes
@@ -35,7 +36,7 @@
     echo '</test>' >>nixsupport-testng.xml
     echo '</suite>' >>nixsupport-testng.xml
 
-    export CLASSPATH="$CLASSPATH:${buildDirName}/test-classes:${runtimeClasspath ([testng.core] ++ testDeps)}"
-    echo " --> Test runtime classpath: $CLASSPATH"
-    java ${lib.strings.escapeShellArgs jvmArgs} org.testng.TestNG nixsupport-testng.xml
+    export TEST_RUNTIME_CLASSPATH="${buildDirName}/test-classes:$RUNTIME_CLASSPATH:${runtimeClasspath ([testng.core] ++ testDeps)}"
+    echo " --> Test runtime classpath: $TEST_RUNTIME_CLASSPATH"
+    java -classpath "$TEST_RUNTIME_CLASSPATH" ${lib.strings.escapeShellArgs jvmArgs} org.testng.TestNG nixsupport-testng.xml
   ''
