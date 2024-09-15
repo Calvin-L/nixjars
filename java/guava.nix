@@ -32,6 +32,6 @@ buildJavaPackage {
     failureaccess
   ];
   # checkPhase = testWithJUnit4 {
-  #   testSrcDir = "guava-tests/test";
+  #   testSrcDirs = ["guava-tests/test"];
   # };
 }

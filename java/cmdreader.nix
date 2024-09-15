@@ -11,5 +11,5 @@ buildJavaPackage rec {
     hash = "sha256-3YcoezbDoStD1FFRm2oCoTXlxFHrGXPD+KYcEp0rnW8=";
   };
   srcDir = "src";
-  checkPhase = testWithJUnit4 { testSrcDir="test"; };
+  checkPhase = testWithJUnit4 { testSrcDirs=["test"]; };
 }

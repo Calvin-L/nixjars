@@ -11,5 +11,5 @@ buildJavaPackage rec {
     hash = "sha256-a5l9khKLWfvTHv53utfbw344/UNQOnIU93+wZNQ0ji4=";
   };
   srcDir = "src";
-  # checkPhase = testWithJUnit4 { testSrcDir = "test"; testDeps = [hamcrest]; }; # package org.reflections does not exist
+  # checkPhase = testWithJUnit4 { testSrcDirs = ["test"]; testDeps = [hamcrest]; }; # package org.reflections does not exist
 }

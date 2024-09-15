@@ -31,7 +31,7 @@ in buildJavaPackage rec {
   srcDir = "fastdoubleparser-java${specialCodeVersion}/src/main/java";
 
   checkPhase = testWithJUnit5 {
-    testSrcDir = "fastdoubleparser-dev/src/test/java";
+    testSrcDirs = ["fastdoubleparser-dev/src/test/java"];
     testDeps = [
       jmh.core
     ];
