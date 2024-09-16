@@ -310,6 +310,8 @@ self = (rec {
 
   dexlib2 = callPackage ./java/dexlib2.nix {};
 
+  dex2jar = recurseIntoAttrs (callPackage ./java/dex2jar.nix {});
+
 } // (packageOverrides self));
 
 in self
