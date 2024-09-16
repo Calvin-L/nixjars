@@ -314,6 +314,10 @@ self = (rec {
 
   wala = recurseIntoAttrs (callPackage ./java/wala.nix {});
 
+  heros = callPackage ./java/heros.nix {};
+
+  sootup = recurseIntoAttrs (callPackage ./java/sootup.nix {});
+
 } // (packageOverrides self));
 
 in self
