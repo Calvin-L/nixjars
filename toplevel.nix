@@ -312,6 +312,8 @@ self = (rec {
 
   dex2jar = recurseIntoAttrs (callPackage ./java/dex2jar.nix {});
 
+  wala = recurseIntoAttrs (callPackage ./java/wala.nix {});
+
 } // (packageOverrides self));
 
 in self
