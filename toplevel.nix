@@ -306,6 +306,8 @@ self = (rec {
 
   vavr = callPackage ./java/vavr.nix {};
 
+  jspecify = callPackage ./java/jspecify.nix {};
+
 } // (packageOverrides self));
 
 in self
