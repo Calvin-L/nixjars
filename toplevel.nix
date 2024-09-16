@@ -308,6 +308,8 @@ self = (rec {
 
   jspecify = callPackage ./java/jspecify.nix {};
 
+  dexlib2 = callPackage ./java/dexlib2.nix {};
+
 } // (packageOverrides self));
 
 in self
