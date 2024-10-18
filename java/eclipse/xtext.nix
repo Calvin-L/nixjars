@@ -1,5 +1,5 @@
 {lib, fetchFromGitHub, buildJavaPackage,
- guava, guice,
+ guava, guice, gson,
  ant,
  classgraph,
  antlr3, antlr3-runtime,
@@ -12,13 +12,13 @@
 
 let
 
-xtext-version = "2.32.0";
+xtext-version = "2.36.0";
 xtext-license = lib.licenses.epl20;
 xtext-src = fetchFromGitHub {
   owner = "eclipse";
   repo = "xtext";
   rev = "v${xtext-version}";
-  hash = "sha256-heqRbbv3XuGXtxoQx1EpyrWHABXTSRDeCvQI3zhGmwU=";
+  hash = "sha256-REkVgBluoXb+dWHFlTaqx9dWJMbuTUwH06URg+oBGgQ=";
 };
 
 in
@@ -89,7 +89,6 @@ rec {
       eclipse-mwe.runtime
     ];
     patches = [
-      ./remove-xpand-based-Xtext2Ecore-Postprocessor.patch
       ./xtext-upgrade-antlr.patch
     ];
     configurePhase = ''
@@ -146,6 +145,7 @@ rec {
       eclipse-emf.ecore-xmi
       guava
       guice
+      gson
       jakarta-inject-api
       log4j-1_2-api
       xtend-lib
