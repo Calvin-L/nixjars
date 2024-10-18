@@ -2,13 +2,13 @@
 
 let
 
-version = "9.6";
+version = "9.7.1";
 license = lib.licenses.bsd3;
 src = fetchurl {
-  url = "https://gitlab.ow2.org/asm/asm/-/archive/ASM_9_6/asm-ASM_9_6.tar.bz2";
-  hash = "sha256-/+gHEc8rVwosZVNuCYuPyJvJLFPquBycJXVKfmNe/j4=";
+  url = "https://gitlab.ow2.org/asm/asm/-/archive/ASM_9_7_1/asm-ASM_9_7_1.tar.bz2";
+  hash = "sha256-lueDoqyxj5jEt8Y1Xyv7EvhNZAxsgcQwrvYjm7SzCWA=";
 };
-srcName = "asm-ASM_9_6"; # for some reason src.name doesn't work :(
+srcName = "asm-ASM_9_7_1"; # for some reason src.name doesn't work :(
 
 in rec {
 
