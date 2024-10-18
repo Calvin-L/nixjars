@@ -1,17 +1,22 @@
-{lib, buildJavaPackage, fetchFromGitHub, guava, testWithJUnit4}:
+{lib, buildJavaPackage, fetchFromGitHub,
+ guava, threetenbp,
+ testWithJUnit5, assertj-core}:
 
 buildJavaPackage rec {
   pname = "joda-convert";
-  version = "2.2.3";
+  version = "3.0.1";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "JodaOrg";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-luyhKUrn4L1wiYXbGZ6DZTGQ2f0obzbJLCBb9OCS3xs=";
+    hash = "sha256-BEeHe1guJMvD4JsxwWvC3VvCTDyk2pOcHfOYtIuzcGg=";
   };
   deps = [
     guava
+    threetenbp
   ];
-  checkPhase = testWithJUnit4 {};
+  checkPhase = testWithJUnit5 {
+    testDeps = [assertj-core];
+  };
 }
