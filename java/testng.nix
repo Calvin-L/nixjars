@@ -3,13 +3,13 @@
 
 let
 
-version = "7.9.0";
+version = "7.10.2";
 license = lib.licenses.asl20;
 src = fetchFromGitHub {
   owner = "testng-team";
   repo = "testng";
   rev = version;
-  hash = "sha256-VruDbc5NU0O72KMdxzUSO4Zq8ApbrFbM70QNRAspyk0=";
+  hash = "sha256-BchoeVdC101hizKLuJaMCqiC313ejw0FrrprYhT+KI8=";
 };
 
 in {
