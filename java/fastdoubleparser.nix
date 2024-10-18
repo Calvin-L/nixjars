@@ -1,4 +1,5 @@
-{lib, buildJavaPackage, fetchFromGitHub, jdk, rsync, testWithJUnit5, jmh}:
+{lib, buildJavaPackage, fetchFromGitHub, jdk, rsync,
+ testWithJUnit5, junit, jmh}:
 
 let
   javaMajorVersion = lib.strings.toIntBase10 (builtins.elemAt (lib.strings.splitString "." (jdk.version)) 0);
@@ -10,13 +11,13 @@ let
     else "8";
 in buildJavaPackage rec {
   pname = "fastdoubleparser";
-  version = "1.0.0";
+  version = "1.0.1";
   license = lib.licenses.mit;
   src = fetchFromGitHub {
     owner = "wrandelshofer";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-V9ZjhZAKPccDKT7ms72Svbr0MY/AStLN/9WADIC87D0=";
+    hash = "sha256-sqxgPW+pJiEqLM+IwApxM3x/eaPBkLgCDZceGX1tFQc=";
   };
 
   # jdk.incubator.vector not available, so no FastDoubleVector for you!
@@ -34,6 +35,7 @@ in buildJavaPackage rec {
     testSrcDirs = ["fastdoubleparser-dev/src/test/java"];
     testDeps = [
       jmh.core
+      junit.jupiter-params
     ];
     jvmArgs = ["-DenableLongRunningTests=false"];
   };
