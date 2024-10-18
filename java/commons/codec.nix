@@ -4,13 +4,13 @@
 
 buildJavaPackage rec {
   pname = "commons-codec";
-  version = "1.17.0";
+  version = "1.17.1";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "apache";
     repo = pname;
     rev = "rel/${pname}-${version}";
-    hash = "sha256-5vXTP4+5rN12kingqjIhpMChDuxsEJtQULafaaiHgg8=";
+    hash = "sha256-7SjCRdpcA35GhzkkaB3hTMgzYQGkIDu110J0qvuNTXc=";
   };
   checkPhase = testWithJUnit5 {
     testDeps = [
