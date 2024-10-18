@@ -3,13 +3,13 @@
  eclipse-platform-ui, osgi}:
 
 let
-  version = "2.37.0";
+  version = "2.39.0";
   license = lib.licenses.epl20;
   src = fetchFromGitHub {
     owner = "eclipse-emf";
     repo = "org.eclipse.emf";
     rev = "R${builtins.replaceStrings ["."] ["_"] version}";
-    hash = "sha256-apS1MwL60zifCoQ8PvV0RTw8z3PWzgW/KWSsn65+8Vc=";
+    hash = "sha256-S/N+xOP4QDd2nUVIC/7jm6oYa8etEjTs7hfzWnufHIE=";
   };
 in {
   common = buildJavaPackage {
