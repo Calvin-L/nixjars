@@ -1,18 +1,24 @@
-{lib, buildJavaPackage, fetchFromGitHub, testWithJUnit4}:
+{lib, buildJavaPackage, fetchFromGitHub,
+ error-prone-annotations,
+ testWithJUnit4}:
 
 let
   dollar = "$";
 in buildJavaPackage rec {
   pname = "gson";
-  version = "2.10.1";
+  version = "2.11.0";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "google";
     repo = pname;
     rev = "gson-parent-${version}";
-    hash = "sha256-Hjex840nPoJ99l41VeMa9Eiq81QZOEYB2MGvdzQwMus=";
+    hash = "sha256-HyQCgviEfzLjoxE0MbmbK0Ht52DWeWrq9P8ma/0kdSQ=";
   };
   sourceRoot = "${src.name}/gson";
+
+  deps = [
+    error-prone-annotations
+  ];
 
   # ReflectionAccessTest fails on JDK 18+ with
   # > java.lang.UnsupportedOperationException: The Security Manager is deprecated and will be removed in a future release
