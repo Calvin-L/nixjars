@@ -2,13 +2,13 @@
 
 buildJavaPackage rec {
   pname = "classgraph";
-  version = "4.8.163";
+  version = "4.8.177";
   license = lib.licenses.mit;
   src = fetchFromGitHub {
     owner = pname;
     repo = pname;
     rev = "${pname}-${version}";
-    hash = "sha256-Y0xv/Ip3sYwnrDFf8i+1QqlJm6GvNpz1bPAJcFwJ2K0=";
+    hash = "sha256-x8x3Ledq2u5EdGJRFZ0DHoOGu93MOaI5hlhhkv21XUI=";
   };
   checkForClassDups = false; # this is a dependency of the dedup infrastructure
 }
