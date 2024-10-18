@@ -4,13 +4,13 @@
 
 buildJavaPackage rec {
   pname = "commons-compress";
-  version = "1.26.2";
+  version = "1.27.1";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "apache";
     repo = pname;
     rev = "rel/${pname}-${version}";
-    hash = "sha256-nyGvRNhut46GFRW1dvN+BSiM7sauiCM57W7TIoEgWYU=";
+    hash = "sha256-BiFnXh/oyBiarxot7WNKV9UZN3H9ytZCYF6Zzo7ZUQw=";
   };
   sourceEncoding = "iso-8859-1";
   deps = [
