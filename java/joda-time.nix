@@ -2,13 +2,13 @@
 
 buildJavaPackage rec {
   pname = "joda-time";
-  version = "2.12.7";
+  version = "2.13.0";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "JodaOrg";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-o7UdqI6h6fBYyTpy2a5PPUGEDu1zWye3cv26EBirBCA=";
+    hash = "sha256-dhT02vwKElZzQODDsdi+YKqmHRLv9/Nq/2fVIjc/Skk=";
   };
   deps = [
     joda-convert
