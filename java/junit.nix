@@ -3,7 +3,7 @@
  junit4, apiguardian, opentest4j, open-test-reporting, univocity-parsers, picocli}:
 
 let
-  version = "5.10.0";
+  version = "5.10.0"; # upgrade to 5.11.0 blocked by https://github.com/junit-team/junit5/commit/4c0fa630c72255adf6a800dbbaf76e2bb762cc8e
   license = lib.licenses.epl20;
   src = fetchFromGitHub {
     owner = "junit-team";
