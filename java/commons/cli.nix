@@ -1,14 +1,21 @@
-{lib, fetchFromGitHub, buildJavaPackage, testWithJUnit4}:
+{lib, fetchFromGitHub, buildJavaPackage,
+ testWithJUnit5, junit, mockito, commons-io}:
 
 buildJavaPackage rec {
   pname = "apache-commons-cli";
-  version = "1.4";
+  version = "1.9.0";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "apache";
     repo = "commons-cli";
-    rev = "cli-${version}";
-    hash = "sha256-gaEwoqin9nzYYM6yglR++jwowGZBBbaxKs1q6yfp+7U=";
+    rev = "rel/commons-cli-${version}";
+    hash = "sha256-gTsRSxQEIGNZ5HNPC8ckK1hL6u2TDdznbKVfU3zre9Y=";
   };
-  checkPhase = testWithJUnit4 {};
+  checkPhase = testWithJUnit5 {
+    testDeps = [
+      junit.jupiter-params
+      mockito
+      commons-io
+    ];
+  };
 }
