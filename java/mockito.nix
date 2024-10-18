@@ -6,14 +6,15 @@ let dollar = "$"; in
 
 buildJavaPackage rec {
   pname = "mockito";
-  version = "5.11.0";
+  version = "5.14.2";
   license = lib.licenses.mit;
   src = fetchFromGitHub {
     owner = "mockito";
     repo = "mockito";
     rev = "v${version}";
-    hash = "sha256-CytGlwEuYieV8tvhny7gc2AFlW5exnNRq7es6kzVIlw=";
+    hash = "sha256-vm7Yo43YpRKMhzHJARuZB9K0Gd4A67ajaIrMVluzs2M=";
   };
+  sourceRoot = "${src.name}/mockito-core";
   patchPhase = ''
     substituteInPlace src/main/java/org/mockito/internal/creation/bytebuddy/InlineBytecodeGenerator.java \
       --replace-fail 'net.bytebuddy.jar.asm.' 'org.objectweb.asm.' \
