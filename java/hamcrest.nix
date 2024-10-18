@@ -2,15 +2,14 @@
 
 buildJavaPackage rec {
   pname = "hamcrest";
-  version = "2.2";
+  version = "3.0";
   license = lib.licenses.bsd3;
   src = fetchFromGitHub {
     owner = "hamcrest";
     repo = "JavaHamcrest";
     rev = "v${version}";
-    hash = "sha256-tiTIC1ArY23q0czpSEH5tm+QHQXkDvtHKZ+MjtmxsHk=";
+    hash = "sha256-ntae6XWpD0wEs36YoPsfTl6cSR6ULl6dAJ5oZsV+ih0=";
   };
   srcDir = "hamcrest/src/main/java";
-  patches = [./hamcrest-generics.patch]; # fix compilation on newer JDKs
   checkPhase = null; # TODO: stage 2 to test junit with itself
 }
