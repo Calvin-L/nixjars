@@ -1,20 +1,19 @@
 {lib, stdenv, buildJavaPackage, fetchFromGitHub,
- jline,
  cmake, jdk,
  testWithJUnit5, easymock}:
 
 let
 
-  version = "3.25.0";
+  version = "3.27.1";
   license = lib.licenses.bsd3;
   src = fetchFromGitHub {
     owner = "jline";
     repo = "jline3";
-    rev = "jline-parent-${version}";
-    hash = "sha256-qhyMRdtDcnaB+dJ8BQiDhuSg+3bVlTdc+9mkjFEx9Tc=";
+    rev = "jline-${version}";
+    hash = "sha256-+g+TaAVdK5WoQ1/8VGX/BJh34lGXKeLiLCJJypaXOwk=";
   };
 
-in {
+in rec {
 
   native-jni = stdenv.mkDerivation {
     pname = "jline-native-jni";
@@ -48,12 +47,12 @@ in {
     pname = "jline-native";
     inherit version license src;
     propagatedBuildInputs = [
-      jline.native-jni
+      native-jni
     ];
     sourceRoot = "${src.name}/native";
     configurePhase = ''
       rm -rv src/main/resources/org/jline/nativ
-      libpath=$(find ${jline.native-jni}/lib -iname 'libjline-jni.*' -type f | head -n1)
+      libpath=$(find ${native-jni}/lib -iname 'libjline-jni.*' -type f | head -n1)
       test -e "$libpath"
       substituteInPlace src/main/java/org/jline/nativ/JLineNativeLoader.java \
         --replace-fail 'String jlineNativeLibraryPath = System.getProperty("library.jline.path");' "String jlineNativeLibraryPath = \"$(dirname "$libpath")\";"
@@ -79,7 +78,7 @@ in {
     inherit version license src;
     sourceRoot = "${src.name}/terminal";
     deps = [
-      jline.native
+      native
     ];
     checkPhase = testWithJUnit5 { testDeps=[easymock]; };
   };
@@ -89,7 +88,7 @@ in {
     inherit version license src;
     sourceRoot = "${src.name}/reader";
     deps = [
-      jline.terminal
+      terminal
     ];
   };
 
