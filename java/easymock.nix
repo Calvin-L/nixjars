@@ -3,13 +3,13 @@
 
 buildJavaPackage rec {
   pname = "easymock";
-  version = "5.2.0";
+  version = "5.4.0";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "easymock";
     repo = pname;
     rev = "${pname}-${version}";
-    hash = "sha256-/6O4hYlBmJ3cEUmrzJ5EsdiBESZaJRTfOxiJpA4bYEk=";
+    hash = "sha256-sFGFLfiMDNmEvtKZuRgrANMOn7BTti+kvWRv/zOMt5w=";
   };
   sourceRoot = "${src.name}/core";
   deps = [
