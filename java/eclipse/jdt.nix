@@ -4,20 +4,20 @@
  osgi}:
 
 let
-  version = "4.31";
+  version = "4.33";
   license = lib.licenses.epl20;
   src = fetchFromGitHub {
     owner = "eclipse-jdt";
     repo = "eclipse.jdt.core";
     rev = "R${builtins.replaceStrings ["."] ["_"] version}";
-    hash = "sha256-7/yuDSILmHomkCXo3rOMQFdL5nGZc4xufs0ixiOlrLI=";
+    hash = "sha256-a9W8AQMcoW4/+qfXeaJoaSitgE835UExP1bbUetwD4c=";
   };
 
   debug-src = fetchFromGitHub {
     owner = "eclipse-jdt";
     repo = "eclipse.jdt.debug";
     rev = "R${builtins.replaceStrings ["."] ["_"] version}";
-    hash = "sha256-KXTnKuu9PX4lw2zf3Ix18I9Nn96nzAh2p6ganEwmyYo=";
+    hash = "sha256-yGTPo2AzCa3dDvmmsptEIviDMrJlytWiepPFWpIoF8M=";
   };
 in {
   core-compiler-batch = buildJavaPackage {
@@ -112,6 +112,7 @@ in {
       eclipse-platform.debug-variables
       osgi.framework
       osgi.service-prefs
+      osgi.util-tracker
     ];
   };
 }

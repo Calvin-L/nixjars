@@ -182,6 +182,7 @@ self = (rec {
   eclipse-equinox = recurseIntoAttrs (callPackage ./java/eclipse/equinox.nix {});
   eclipse-platform = recurseIntoAttrs (callPackage ./java/eclipse/platform.nix {});
   eclipse-mwe = recurseIntoAttrs (callPackage ./java/eclipse/mwe.nix {});
+  eclipse-pde = recurseIntoAttrs (callPackage ./java/eclipse/pde.nix {});
   xtext = recurseIntoAttrs (callPackage ./java/eclipse/xtext.nix {});
   xtendc = xtext.xtend-core;
 

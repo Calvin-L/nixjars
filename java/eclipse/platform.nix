@@ -1,16 +1,16 @@
 {lib, fetchFromGitHub, buildJavaPackage,
- osgi,
+ osgi, jna, jna-platform,
  eclipse-equinox}:
 
 let
 
-version = "4.31";
+version = "4.33";
 license = lib.licenses.epl20;
 src = fetchFromGitHub {
   owner = "eclipse-platform";
   repo = "eclipse.platform";
   rev = "R${builtins.replaceStrings ["."] ["_"] version}";
-  hash = "sha256-c5zqY1gi8stoRxoNIEA7/Tz6Xu4pFIs9kI5jqYKa+60=";
+  hash = "sha256-tbnfJv25CwDJGUZHwaqepsJJBP62xi/stoDPpFmpEUY=";
 };
 
 in
@@ -74,6 +74,8 @@ rec {
       core-runtime
       eclipse-equinox.common
       eclipse-equinox.registry
+      jna
+      jna-platform
     ];
   };
 
@@ -112,6 +114,7 @@ rec {
       core-runtime
       core-contenttype
       core-expressions
+      jna
     ];
   };
 

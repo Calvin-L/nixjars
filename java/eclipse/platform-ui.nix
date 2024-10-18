@@ -3,13 +3,13 @@
  eclipse-equinox, eclipse-platform, eclipse-platform-ui}:
 
 let
-  version = "4.31";
+  version = "4.33";
   license = lib.licenses.epl20;
   src = fetchFromGitHub {
     owner = "eclipse-platform";
     repo = "eclipse.platform.ui";
     rev = "R${builtins.replaceStrings ["."] ["_"] version}";
-    hash = "sha256-xAbB9Bte/YLj1IppBXY3v76Ysq9OiZQuTQ6LLc4WC7A=";
+    hash = "sha256-WUtDrS3NVI2JZ/KBLjXJkfGsq50oi8oF7wjialXaDlo=";
   };
 in {
 

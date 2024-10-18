@@ -1,17 +1,17 @@
 {lib, fetchFromGitHub, buildJavaPackage,
  osgi,
  apache-felix,
- eclipse-platform}:
+ eclipse-platform, eclipse-pde}:
 
 let
 
-version = "4.31";
+version = "4.33";
 license = lib.licenses.epl20;
 src = fetchFromGitHub {
   owner = "eclipse-equinox";
   repo = "equinox";
   rev = "R${builtins.replaceStrings ["."] ["_"] version}";
-  hash = "sha256-naexkmRmXPGgFGKm6NktQRcvP4KIFqno2kqrpPQxxuk=";
+  hash = "sha256-DbcPaAHcxH/OahpOcsKNRf2Iq3kuYGfg6Lafl4sE/Mw=";
 };
 
 in
@@ -23,9 +23,11 @@ rec {
     inherit version license src;
     srcDir = "bundles/org.eclipse.osgi/supplement/src";
     deps = [
-      osgi.service-log
+      eclipse-pde.apitools-annotations
+      osgi.annotation-versioning
       osgi.framework
       osgi.resource
+      osgi.service-log
       osgi.service-resolver
     ];
   };
@@ -50,6 +52,11 @@ rec {
       apache-felix.resolver
       osgi-supplement
       # openj9-sharedclasses-ibm-oti-shared
+    ];
+
+    patches = [
+      # undo https://github.com/eclipse-equinox/equinox/commit/d5e0f4976aa3e0f4f768c782f525f2dd5a4a9fa9#diff-fd1e68916b3a1f200d762ced3898f9fde3e920ca7ffc2456c56a90d8676028bc
+      ./equinox-hide-PermutationType.patch
     ];
 
     # whatever this horseshit is, I refuse to support it

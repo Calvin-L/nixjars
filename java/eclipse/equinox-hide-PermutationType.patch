@@ -1,0 +1,41 @@
+diff --git a/bundles/org.eclipse.osgi/container/src/org/eclipse/osgi/container/ModuleResolver.java b/bundles/org.eclipse.osgi/container/src/org/eclipse/osgi/container/ModuleResolver.java
+index 6efc621..126a6f9 100644
+--- a/bundles/org.eclipse.osgi/container/src/org/eclipse/osgi/container/ModuleResolver.java
++++ b/bundles/org.eclipse.osgi/container/src/org/eclipse/osgi/container/ModuleResolver.java
+@@ -38,7 +38,6 @@ import java.util.concurrent.TimeUnit;
+ import java.util.concurrent.atomic.AtomicBoolean;
+ import java.util.concurrent.atomic.AtomicReference;
+ import org.apache.felix.resolver.Logger;
+-import org.apache.felix.resolver.PermutationType;
+ import org.apache.felix.resolver.ResolutionError;
+ import org.apache.felix.resolver.ResolverImpl;
+ import org.eclipse.osgi.container.ModuleRequirement.DynamicModuleRequirement;
+@@ -519,28 +518,6 @@ final class ModuleResolver {
+ 						+ (throwable != null ? (TAB + TAB + throwable.getMessage()) : "")); //$NON-NLS-1$
+ 			}
+ 
+-			@Override
+-			public void logPermutationAdded(PermutationType type) {
+-				totalPerm++;
+-				switch (type) {
+-				case USES:
+-					usesPerm++;
+-					break;
+-				case IMPORT:
+-					importPerm++;
+-					break;
+-				case SUBSTITUTE:
+-					subPerm++;
+-				}
+-			}
+-
+-			PermutationType[] permutationTypes = PermutationType.values();
+-
+-			@Override
+-			public void logProcessPermutation(PermutationType type) {
+-				processedPerm++;
+-			}
+-
+ 		}
+ 
+ 		private final ModuleResolutionReport.Builder reportBuilder = new ModuleResolutionReport.Builder();
