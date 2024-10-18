@@ -31,6 +31,9 @@ buildJavaPackage {
   deps = [
     failureaccess
   ];
+  manifestProperties = {
+    "Automatic-Module-Name" = "com.google.common";
+  };
   # checkPhase = testWithJUnit4 {
   #   testSrcDirs = ["guava-tests/test"];
   # };
