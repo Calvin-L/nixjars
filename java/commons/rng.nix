@@ -2,12 +2,12 @@
   testWithJUnit5, junit, opentest4j, commons-math}:
 
 let
-version = "1.5";
+version = "1.6";
 src = fetchFromGitHub {
   owner = "apache";
   repo = "commons-rng";
   rev = "rel/commons-rng-${version}";
-  hash = "sha256-flIclF38IM9wvR6fFqDsk2J535sKqHKYXvFn3abbjV4=";
+  hash = "sha256-WuUX3TjdSfnK8BfXMnISsXaAJYtdam+5HFJ70jnORJo=";
 };
 license = lib.licenses.asl20;
 
