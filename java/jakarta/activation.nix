@@ -2,13 +2,13 @@
 
 buildJavaPackage rec {
   pname = "jakarta-activation";
-  version = "2.1.2";
+  version = "2.1.3";
   license = lib.licenses.bsd3;
   src = fetchFromGitHub {
     owner = "jakartaee";
     repo = "jaf-api";
     rev = "${version}";
-    hash = "sha256-2w7pWg5gxesrC93zVCgoCBsXLfTSjI3fFI1LEYopNM0=";
+    hash = "sha256-zRh4ie9F1qwXUKeCfM90xmsMU+gE1mgeOHeyIuy8/Y4=";
   };
-  srcDir = "api/src/main/java";
+  sourceRoot = "${src.name}/api";
 }
