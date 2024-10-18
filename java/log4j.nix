@@ -1,6 +1,6 @@
 {lib, buildJavaPackage, fetchFromGitHub,
  osgi, jms-api, lmax-disruptor, conversantmedia-disruptor, jctools-core,
- jackson,
+ jackson, jspecify,
  woodstox-core, jansi, jakarta-activation, jakarta-mail, kafka,
  jeromq, commons-compress, commons-csv, stax2-api, slf4j,
  bnd-annotation, error-prone-annotations, findbugs-annotations}:
@@ -9,13 +9,13 @@ rec {
 
   log4j-api = buildJavaPackage rec {
     pname = "log4j-api";
-    version = "2.23.1";
+    version = "2.24.1";
     license = lib.licenses.asl20;
     src = fetchFromGitHub {
       owner = "apache";
       repo = "logging-log4j2";
       rev = "rel/${version}";
-      hash = "sha256-SgY4ZqEjqJSipFsSXN3tPKHBOUHh+zyZIeYkSEo+M5c=";
+      hash = "sha256-uEPFn90gcrECk4389kA9D2Szr70elMdH8+8sqGh1jTU=";
     };
     # src = fetchurl {
     #   url = "https://downloads.apache.org/logging/log4j/${version}/apache-log4j-${version}-src.tar.gz";
@@ -30,6 +30,7 @@ rec {
       osgi.annotation-versioning
       osgi.core
       osgi.resource
+      jspecify
     ];
   };
 
@@ -67,6 +68,7 @@ rec {
       osgi.resource
       stax2-api
       woodstox-core
+      jspecify
     ];
     configurePhase = ''
       substituteInPlace log4j-core/src/main/java/org/apache/logging/log4j/core/net/MimeMessageBuilder.java \
