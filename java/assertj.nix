@@ -4,13 +4,13 @@
 
 buildJavaPackage rec {
   pname = "assertj-core";
-  version = "3.25.3";
+  version = "3.26.3";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "assertj";
     repo = "assertj";
     rev = "assertj-build-${version}";
-    hash = "sha256-cFTG8DFgwqjPXIReyEKLRbGK2T6m6epoLSYHABy7Ct8=";
+    hash = "sha256-3YqP6/Gx2pD/Dhxi2ezRQlpY406jBLo8LprW1/3CSgQ=";
   };
   sourceRoot = "${src.name}/${pname}";
   deps = [
