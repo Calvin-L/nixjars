@@ -2,13 +2,13 @@
 
 buildJavaPackage rec {
   pname = "snappy";
-  version = "1.1.10.5";
+  version = "1.1.10.7";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "xerial";
     repo = "snappy-java";
     rev = "v${version}";
-    hash = "sha256-B0TjlXxOS5V76kNm/SwDxaq3tgFbec7UwpodhfvmOsU=";
+    hash = "sha256-5o1wAWNQyregGxtLQIAU1werudYciTWzhF9eeWIIiC8=";
   };
   compileOnlyDeps = [
     osgi.core
