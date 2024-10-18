@@ -319,6 +319,8 @@ self = (rec {
 
   sootup = recurseIntoAttrs (callPackage ./java/sootup.nix {});
 
+  plume-lib = recurseIntoAttrs (callPackage ./java/plume-lib.nix {});
+
 } // (packageOverrides self));
 
 in self
