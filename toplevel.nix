@@ -321,6 +321,8 @@ self = (rec {
 
   plume-lib = recurseIntoAttrs (callPackage ./java/plume-lib.nix {});
 
+  threetenbp = callPackage ./java/threetenbp.nix {};
+
 } // (packageOverrides self));
 
 in self
