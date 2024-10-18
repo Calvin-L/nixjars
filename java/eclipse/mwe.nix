@@ -7,13 +7,13 @@
 
 let
 
-eclipse-mwe-version = "2.15.0";
+eclipse-mwe-version = "2.19.0";
 eclipse-mwe-license = lib.licenses.epl20;
 eclipse-mwe-src = fetchFromGitHub {
   owner = "eclipse";
   repo = "mwe";
   rev = "v${eclipse-mwe-version}";
-  hash = "sha256-dTJO0Hb5q4gT3yZUQguG2s4XB440sJ05gp9dqMgTTNI=";
+  hash = "sha256-otGcNkHwjyi0qviIQePibwsEj6BDOyb8GG/KFrSWQ8o=";
 };
 
 in
