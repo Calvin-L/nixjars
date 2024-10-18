@@ -3,13 +3,13 @@
 
 buildJavaPackage rec {
   pname = "commons-logging";
-  version = "1.3.2";
+  version = "1.3.4";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "apache";
     repo = "commons-logging";
     rev = "rel/commons-logging-${version}";
-    hash = "sha256-S5NlAnG1fd7kotgIosP9P6tlxvrOjKFJvlaQdUw5BYg=";
+    hash = "sha256-pIy6SBy+niQ/7mbSjLn7d+72C2TBXSWjgurtZtAvoCU=";
   };
   compileOnlyDeps = [
     log4j-1_2-api
