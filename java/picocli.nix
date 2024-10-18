@@ -1,6 +1,6 @@
 {lib, buildJavaPackage, fetchFromGitHub}:
 
-let version = "4.7.5"; in
+let version = "4.7.6"; in
 buildJavaPackage {
   pname = "picocli";
   version = version;
@@ -9,6 +9,6 @@ buildJavaPackage {
     owner = "remkop";
     repo = "picocli";
     rev = "v${version}";
-    hash = "sha256-9skScFsuu3Wj9QTlRnWDZe1ZOqfJtk2pYmq/rtRNWWM=";
+    hash = "sha256-ljOJmxs5ZGQcx1LpCLryczAQBCy/bsEFbUINM2tQT3c=";
   };
 }
