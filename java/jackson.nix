@@ -4,14 +4,14 @@
  testWithJUnit4, junit4, hamcrest}:
 
 let
-  version = "2.17.1";
+  version = "2.18.0";
   license = lib.licenses.asl20;
 
   modules-java8-src = fetchFromGitHub {
     owner = "FasterXML";
     repo = "jackson-modules-java8";
     rev = "jackson-modules-java8-${version}";
-    hash = "sha256-z3bzcu76K9YMQS3GkQpBcdbo1jd9tDsje0Jf4f7GolA=";
+    hash = "sha256-51MrlmRKdDTzqHngCIERDFbtAKJl1XR6CblvNjDbfFA=";
   };
 in
 {
@@ -23,7 +23,7 @@ in
       owner = "FasterXML";
       repo = pname;
       rev = "${pname}-${version}";
-      hash = "sha256-ejlllNXBUxxtqpLKYaZLEFDJ8jEHXZWw+cxkqLrJ44o=";
+      hash = "sha256-07PyWKVT0SUHKoiZrB73OR+WHQPQtmDfFxKe/5OGMsA=";
     };
     deps = [
       fastdoubleparser
@@ -59,7 +59,7 @@ in
       owner = "FasterXML";
       repo = pname;
       rev = "${pname}-${version}";
-      hash = "sha256-SZ+b0EB+NzlGxA8inZI+2OEkPkwBQ0oHwm3kPZ8BC4w=";
+      hash = "sha256-v5aYafFFnpRi4uVz33PyURH6j/vOjm1CRFg0GA1nkzA=";
     };
   };
 
@@ -70,7 +70,7 @@ in
       owner = "FasterXML";
       repo = pname;
       rev = "${pname}-${version}";
-      hash = "sha256-Iv11YQb3shOPt7Y/4aQXq+6qpMYYjkTdnOkForqb0lE=";
+      hash = "sha256-5yiyAchZmCVXLcR7w/+a8VH8oc9qWBNxVScFhlMltnA=";
     };
     compileOnlyDeps = [
       jackson.annotations
@@ -120,7 +120,7 @@ in
       owner = "FasterXML";
       repo = "jackson-dataformats-binary";
       rev = "${repo}-${version}";
-      hash = "sha256-bEdZo/aTdomKMVON6OcI72qE4tgsiYWFDdCdOyIZoxg=";
+      hash = "sha256-Bm8uVvudXUmIzJFnPOeU6uQOaBBAKGqv258nTTaAxFs=";
     };
     sourceRoot = "${src.name}/cbor";
     compileOnlyDeps = [
@@ -151,7 +151,7 @@ in
       owner = "FasterXML";
       repo = "jackson-dataformats-text";
       rev = "${repo}-${version}";
-      hash = "sha256-Gg94omdgPR94eaZ37OAzmdmyDwg0QZwG56QKQwsXJ2k=";
+      hash = "sha256-R4zu2EI1Wdt0Us+rUU16nHxod3kQ0b8bEWjbxXo46OU=";
     };
     sourceRoot = "${src.name}/yaml";
     compileOnlyDeps = [
@@ -183,7 +183,7 @@ in
       owner = "FasterXML";
       repo = pname;
       rev = "${pname}-${version}";
-      hash = "sha256-At52NTS9gcugIbcFIbDKJYl0WQGbd0Id71ZMXmop/0A=";
+      hash = "sha256-qDlSQceC9NmKnmf5HCoNY1SS7+ZYEj9ACPCB2blnTBk=";
     };
     compileOnlyDeps = [
       jackson.annotations
@@ -216,7 +216,7 @@ in
       owner = "FasterXML";
       repo = "jackson-jr";
       rev = "jackson-jr-parent-${version}";
-      hash = "sha256-Yq2bTpOYCzkWuEF4fw82tmfx5Hq8o4tr1ScLZrjxS8U=";
+      hash = "sha256-8uurwmY3Qcl/pLSK8F2xXG6JjQ4hOnpUQIFKFf85v/o=";
     };
     sourceRoot = "${src.name}/jr-objects";
     deps = [
@@ -335,7 +335,7 @@ in
       owner = "FasterXML";
       repo = pname;
       rev = "${pname}-${version}";
-      hash = "sha256-aV56pCFdeaY8ai7CJDhNdx3t5QRrI73PIi5p5sSFeAo=";
+      hash = "sha256-66jTD+8mM1FvmSgY7KPB3a+zj7hjLSd3MMJD80WoT+U=";
     };
     deps = [
       jackson.annotations
