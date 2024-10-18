@@ -3,13 +3,13 @@
 
 buildJavaPackage rec {
   pname = "commons-io";
-  version = "2.16.1";
+  version = "2.17.0";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "apache";
     repo = "commons-io";
     rev = "rel/commons-io-${version}";
-    hash = "sha256-BSTfju2X8TEIwDeFGrF98CVshZoscZLhv5XjG7YaxEE=";
+    hash = "sha256-Mnf1fn6LepQq4wffnuz/I30NvdC/+vm+1d4oQTx15XY=";
   };
   # checkPhase = testWithJUnit5 {
   #   testDeps = [
