@@ -2,7 +2,7 @@
 
 buildJavaPackage rec {
   pname = "checker-qual";
-  version = "3.42.0";
+  version = "3.48.1";
   # NOTE: while the Checker Framework is licensed under the GPL2 with
   # classpath exception (licenses.gpl2Classpath), the quals library has a
   # much more permissive MIT license:
@@ -12,9 +12,10 @@ buildJavaPackage rec {
     owner = "typetools";
     repo = "checker-framework";
     rev = "checker-framework-${version}";
-    hash = "sha256-qsJPwcU43+TwVVXcVBen+UY5jvBMHfRdHUy6tsD7sxo=";
+    hash = "sha256-NAp2E7RIuOZMeMVGTvRGuX1WzQZtJGT4eSZX4lxnvzI=";
+    sparseCheckout = ["checker-qual"];
   };
-  srcDir = "checker-qual/src/main/java";
+  sourceRoot = "${src.name}/checker-qual";
   manifestProperties = {
     "Automatic-Module-Name" = "org.checkerframework.checker.qual";
   };
