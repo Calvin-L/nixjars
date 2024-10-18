@@ -2,13 +2,14 @@
 
 buildJavaPackage rec {
   pname = "j2objc";
-  version = "2.5";
+  version = "2.8";
   license = lib.licenses.asl20;
   src = fetchFromGitHub {
     owner = "google";
     repo = pname;
-    sha256 = "10x566ia9mwczbj5ms69nsaqsy7dbwfpmrgbklfk9yp9sanaryc9";
     rev = "${version}";
+    sparseCheckout = ["annotations"];
+    hash = "sha256-dQbXYcmqpa7/ztZuR2R3fAisNJ9zrqEQTpByYwRzasw=";
   };
-  srcDir = "annotations/src/main/java";
+  sourceRoot = "${src.name}/annotations";
 }
