@@ -124,12 +124,12 @@ rec {
     ];
   };
 
-  antlr4-version = "4.13.1";
+  antlr4-version = "4.13.2";
   antlr4-src = fetchFromGitHub {
     owner = "antlr";
     repo = "antlr4";
     rev = antlr4-version;
-    hash = "sha256-ky9nTDaS+L9UqyMsGBz5xv+NY1bPavaSfZOeXO1geaA=";
+    hash = "sha256-DxxRL+FQFA+x0RudIXtLhewseU50aScHKSCDX7DE9bY=";
   };
 
   antlr4-runtime = buildJavaPackage {
