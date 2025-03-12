@@ -5,13 +5,13 @@
 
 let
 
-  guava-version = "33.3.1";
+  guava-version = "33.4.0";
   guava-license = lib.licenses.asl20;
   guava-src = fetchFromGitHub {
     owner = "google";
     repo = "guava";
     rev = "v${guava-version}";
-    hash = "sha256-SnZ7+lft8r/VXzaY+jGb4SWhJyeEm4uW+s6V6r8qI6M=";
+    hash = "sha256-eIvZpBlKgJhO3QdcpsU4sJWXh5EwT12XXC6xc/y8r3I=";
   };
 
 in
