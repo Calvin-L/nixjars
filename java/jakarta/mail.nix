@@ -6,7 +6,8 @@ buildJavaPackage rec {
   version = "2.1.3";
   license = [
     lib.licenses.epl20
-    lib.licenses.gpl2Classpath
+    # NOTE 2025/9/23: gpl2Classpath renamed to classpathException20
+    (if lib.licenses ? "classpathException20" then lib.licenses.classpathException20 else lib.licenses.gpl2Classpath)
   ];
   src = fetchFromGitHub {
     owner = "jakartaee";
