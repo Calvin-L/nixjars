@@ -10,4 +10,7 @@ buildJavaPackage rec {
     rev = "v${version}";
     hash = "sha256-WgVRaGm9lYhMeMM6QWUezXtUsXkaK/iPt1gj2koWNu8=";
   };
+  patchPhase = ''
+    rsync -av --ignore-existing 'src/java9/java/' 'src/main/java/'
+  '';
 }
