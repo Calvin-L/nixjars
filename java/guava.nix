@@ -29,12 +29,11 @@ buildJavaPackage {
     j2objc-annotations
   ];
   deps = [
-    failureaccess
     jspecify # annotations have runtime retention
   ];
-  manifestProperties = {
-    "Automatic-Module-Name" = "com.google.common";
-  };
+  propagatedBuildInputs = [
+    failureaccess
+  ];
   # checkPhase = testWithJUnit4 {
   #   testSrcDirs = ["guava-tests/test"];
   # };
