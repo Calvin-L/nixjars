@@ -11,6 +11,7 @@ args@{
   deps ? [],
   compileOnlyDeps ? [],
   runtimeOnlyDeps ? [],
+  propagatedBuildInputs ? [],
   nativeBuildInputs ? [],
   annotationProcessors ? [],
   sourceEncoding ? "UTF-8",
@@ -74,7 +75,7 @@ stdenvNoCC.mkDerivation (
 
     export CLASS_OUTPUT_DIR='${buildDirName}/classes'
     mkdir -p "$CLASS_OUTPUT_DIR"
-    export COMPILE_CLASSPATH='${compileClasspath (deps ++ compileOnlyDeps)}'
+    export COMPILE_CLASSPATH='${compileClasspath (deps ++ compileOnlyDeps ++ propagatedBuildInputs)}'
     echo " --> Compile classpath: '$COMPILE_CLASSPATH'"
     ${if actuallyDoClassDupCheck then "no-class-dups \"$COMPILE_CLASSPATH\"" else "echo 'Skipping class dup check'"}
     find '${srcDir}' -iname '*.java' -type f | sort >${buildDirName}/java-files
@@ -88,7 +89,7 @@ stdenvNoCC.mkDerivation (
       @${buildDirName}/java-files \
       -d "$CLASS_OUTPUT_DIR"
     ${copyResources}
-    export RUNTIME_CLASSPATH="$CLASS_OUTPUT_DIR:${runtimeClasspath (deps ++ runtimeOnlyDeps)}"
+    export RUNTIME_CLASSPATH="$CLASS_OUTPUT_DIR:${runtimeClasspath (deps ++ runtimeOnlyDeps ++ propagatedBuildInputs)}"
 
     echo 'Manifest:'
     touch MANIFEST.MF

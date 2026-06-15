@@ -37,11 +37,15 @@ collect-recursive = d: succ: seen:
     then collect-recursive tl succ seen
     else [hd] ++ (collect-recursive (tl ++ succ hd) succ (seen // {"${hd_as_str}"=true;}));
 
+packagesUsedAtCompileTime = pkg: if pkg ? outputJar then pkg.propagatedBuildInputs else [];
+
 compileClasspath = deps:
-  builtins.concatStringsSep ":" (builtins.map (d: "${if d ? lib then d.lib else d.out}/${d.outputJar}") (builtins.filter (d: d ? outputJar) deps));
+  builtins.concatStringsSep ":" (builtins.sort (a: b: a < b) (builtins.map (d: "${if d ? lib then d.lib else d.out}/${d.outputJar}") (builtins.filter (d: d ? outputJar) (collect-recursive deps packagesUsedAtCompileTime {}))));
+
+packagesUsedAtRunTime = pkg: if pkg ? outputJar then pkg.buildInputs ++ pkg.runtimeOnlyDeps ++ pkg.propagatedBuildInputs else [];
 
 runtimeClasspath = deps:
-  builtins.concatStringsSep ":" (builtins.map (d: "${if d ? lib then d.lib else d.out}/${d.outputJar}") (builtins.filter (d: d ? outputJar) (collect-recursive deps (d: if d ? outputJar then d.buildInputs ++ d.runtimeOnlyDeps else []) {})));
+  builtins.concatStringsSep ":" (builtins.sort (a: b: a < b) (builtins.map (d: "${if d ? lib then d.lib else d.out}/${d.outputJar}") (builtins.filter (d: d ? outputJar) (collect-recursive deps packagesUsedAtRunTime {}))));
 
 self = (rec {
 
