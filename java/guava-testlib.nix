@@ -1,5 +1,5 @@
 {buildJavaPackage,
- guava, junit4, checker-qual, jsr305, j2objc-annotations, error-prone-annotations, failureaccess}:
+ guava, junit4, checker-qual, jsr305, j2objc-annotations, error-prone-annotations, failureaccess, jspecify}:
 
 buildJavaPackage {
   pname = "guava-testlib";
@@ -16,5 +16,6 @@ buildJavaPackage {
     j2objc-annotations
     jsr305
     junit4
+    jspecify
   ];
 }
