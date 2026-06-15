@@ -323,6 +323,8 @@ self = (rec {
 
   threetenbp = callPackage ./java/threetenbp.nix {};
 
+  prettier4j = callPackage ./java/prettier4j.nix {};
+
 } // (packageOverrides self));
 
 in self
