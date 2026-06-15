@@ -69,262 +69,154 @@ self = (rec {
     buildDirName = buildDirName;
   };
 
-  apfloat = callPackage ./java/apfloat.nix {};
-
-  fetchMaven = callPackage ./support-functions/fetchMaven.nix {};
-
-  no-class-dups = callPackage ./java/no-class-dups {};
-
-  brotli-dec = callPackage ./java/brotli-dec.nix {};
-
-  tukaani-xz = callPackage ./java/tukaani-xz.nix {};
-
-  ow2 = recurseIntoAttrs (callPackage ./java/ow2.nix {});
-  ow2-asm = ow2.asm;
-  ow2-asm-commons = ow2.asm-commons;
-  ow2-asm-tree = ow2.asm-tree;
-
-  zstd-jni = callPackage ./java/zstd-jni.nix {};
-
-  lmax-disruptor = callPackage ./java/lmax-disruptor.nix {};
-
-  conversantmedia-disruptor = callPackage ./java/conversantmedia-disruptor.nix {};
-
-  janino = recurseIntoAttrs (callPackage ./java/janino.nix {});
-
-  jansi = callPackage ./java/jansi.nix {};
-
-  jms-api = callPackage ./java/jms-api.nix {};
-
-  jctools-core = callPackage ./java/jctools-core.nix {};
-
-  argparse4j = callPackage ./java/argparse4j.nix {};
-
-  jose4j = callPackage ./java/jose4j.nix {};
-
-  lz4 = callPackage ./java/lz4.nix {};
-
-  snappy = callPackage ./java/snappy.nix {};
-
-  kafka = recurseIntoAttrs (callPackage ./java/kafka.nix {});
-
-  jnacl = callPackage ./java/jnacl.nix {};
-
-  jeromq = callPackage ./java/jeromq.nix {};
-
-  log4j = recurseIntoAttrs (callPackage ./java/log4j.nix {});
-  log4j-api = log4j.log4j-api;
-  log4j-core = log4j.log4j-core;
-  log4j-1_2-api = log4j.log4j-1_2-api;
-  log4j-slf4j = log4j.log4j-slf4j;
-
-  logback = recurseIntoAttrs (callPackage ./java/logback.nix {});
-
-  slf4j = recurseIntoAttrs (callPackage ./java/slf4j.nix {});
-
-  cal10n-api = callPackage ./java/cal10n-api.nix {};
-
-  javassist = callPackage ./java/javassist.nix {};
-
+  ant = callPackage ./java/ant.nix {};
+  antlr          = antlr4;
+  antlr-runtime  = antlr4-runtime;
+  antlr2         = antlr-stage2.antlr2;
+  antlr3         = antlr-stage2.antlr3;
+  antlr3-runtime = antlr-stage2.antlr3-runtime;
+  antlr4         = antlr-stage2.antlr4;
+  antlr4-runtime = antlr-stage2.antlr4-runtime;
+  aopalliance = callPackage ./java/aopalliance.nix {};
   apache-felix = recurseIntoAttrs (callPackage ./java/apache-felix.nix {});
-
-  jakarta-activation = callPackage ./java/jakarta/activation.nix {};
-
-  jakarta-mail = callPackage ./java/jakarta/mail.nix {};
-
-  jakarta-inject-api = callPackage ./java/jakarta/inject-api.nix {};
-
-  jakarta-servlet-api = callPackage ./java/jakarta/servlet-api.nix {};
-
-  jline = recurseIntoAttrs (callPackage ./java/jline.nix {});
-
-  easymock = callPackage ./java/easymock.nix {};
-
-  objenesis = callPackage ./java/objenesis.nix {};
-
+  apfloat = callPackage ./java/apfloat.nix {};
+  apiguardian = callPackage ./java/apiguardian.nix {};
+  argparse4j = callPackage ./java/argparse4j.nix {};
+  assertj-core = callPackage ./java/assertj.nix {};
+  bnd-annotation = callPackage ./java/bnd.nix {};
+  brotli-dec = callPackage ./java/brotli-dec.nix {};
   byte-buddy = callPackage ./java/byte-buddy.nix {};
-
   byte-buddy-agent = callPackage ./java/byte-buddy-agent.nix {};
-
-  jna = callPackage ./java/jna.nix {};
-
-  jna-platform = callPackage ./java/jna-platform.nix {};
-
-  jgrapht = recurseIntoAttrs (callPackage ./java/jgrapht.nix {});
-
-  jungrapht = recurseIntoAttrs (callPackage ./java/jungrapht.nix {});
-
-  jheaps = callPackage ./java/jheaps.nix {};
-
-  findbugs-annotations = spotbugs-annotations;
-
-  spotbugs-annotations = callPackage ./java/spotbugs-annotations.nix {};
-
+  cal10n-api = callPackage ./java/cal10n-api.nix {};
+  checker-qual = callPackage ./java/checker-qual.nix {};
+  classgraph = callPackage ./java/classgraph.nix {};
+  cmdreader = callPackage ./java/cmdreader.nix {};
+  commons-bcel = callPackage ./java/commons/bcel.nix {};
+  commons-bsf = callPackage ./java/commons/bsf.nix {};
   commons-cli = callPackage ./java/commons/cli.nix {};
-  commons-math = callPackage ./java/commons/math.nix {};
-  commons-logging = callPackage ./java/commons/logging.nix {};
-  commons-lang = callPackage ./java/commons/lang.nix {};
-  commons-text = callPackage ./java/commons/text.nix {};
   commons-codec = callPackage ./java/commons/codec.nix {};
   commons-compress = callPackage ./java/commons/compress.nix {};
   commons-csv = callPackage ./java/commons/csv.nix {};
-  commons-bcel = callPackage ./java/commons/bcel.nix {};
-  commons-net = callPackage ./java/commons/net.nix {};
-  commons-bsf = callPackage ./java/commons/bsf.nix {};
   commons-io = callPackage ./java/commons/io.nix {};
+  commons-lang = callPackage ./java/commons/lang.nix {};
+  commons-logging = callPackage ./java/commons/logging.nix {};
+  commons-math = callPackage ./java/commons/math.nix {};
+  commons-net = callPackage ./java/commons/net.nix {};
   commons-rng = recurseIntoAttrs (callPackage ./java/commons/rng.nix {});
   commons-rng-client-api = commons-rng.client-api;
   commons-rng-core = commons-rng.core;
   commons-rng-simple = commons-rng.simple;
-
-  osgi = recurseIntoAttrs (callPackage ./java/osgi.nix {});
-
+  commons-text = callPackage ./java/commons/text.nix {};
+  conversantmedia-disruptor = callPackage ./java/conversantmedia-disruptor.nix {};
+  dex2jar = recurseIntoAttrs (callPackage ./java/dex2jar.nix {});
+  dexlib2 = callPackage ./java/dexlib2.nix {};
+  easymock = callPackage ./java/easymock.nix {};
+  eclipse-emf = callPackage ./java/eclipse/emf.nix {};
   eclipse-equinox = recurseIntoAttrs (callPackage ./java/eclipse/equinox.nix {});
-  eclipse-platform = recurseIntoAttrs (callPackage ./java/eclipse/platform.nix {});
+  eclipse-jdt = recurseIntoAttrs (callPackage ./java/eclipse/jdt.nix {});
   eclipse-mwe = recurseIntoAttrs (callPackage ./java/eclipse/mwe.nix {});
   eclipse-pde = recurseIntoAttrs (callPackage ./java/eclipse/pde.nix {});
-  xtext = recurseIntoAttrs (callPackage ./java/eclipse/xtext.nix {});
-  xtendc = xtext.xtend-core;
-
-  jakarta-oro = callPackage ./java/jakarta/oro.nix {};
-
-  jakarta-regexp = callPackage ./java/jakarta/regexp.nix {};
-
-  ant = callPackage ./java/ant.nix {};
-
-  eclipse-jdt = recurseIntoAttrs (callPackage ./java/eclipse/jdt.nix {});
-  ejc = eclipse-jdt.core-compiler-batch;
-
-  eclipse-emf = callPackage ./java/eclipse/emf.nix {};
-
+  eclipse-platform = recurseIntoAttrs (callPackage ./java/eclipse/platform.nix {});
   eclipse-platform-ui = callPackage ./java/eclipse/platform-ui.nix {};
-
-  treelayout = callPackage ./java/treelayout.nix {};
-
-  antlr2         = antlr-stage2.antlr2;
-  antlr3-runtime = antlr-stage2.antlr3-runtime;
-  antlr3         = antlr-stage2.antlr3;
-  antlr4-runtime = antlr-stage2.antlr4-runtime;
-  antlr4         = antlr-stage2.antlr4;
-  antlr-runtime  = antlr4-runtime;
-  antlr          = antlr4;
-
-  jopt-simple = callPackage ./java/jopt-simple.nix {};
-
-  joda-convert = callPackage ./java/joda-convert.nix {};
-  joda-time = callPackage ./java/joda-time.nix {};
-
-  jmh = callPackage ./java/openjdk-jmh.nix {};
-  jmh-core = jmh.core;
-
-  icu4j-core = callPackage ./java/icu4j-core.nix {};
-
-  classgraph = callPackage ./java/classgraph.nix {};
-
-  lsp4j = callPackage ./java/lsp4j.nix {};
-
-  tlatools = callPackage ./java/tlatools.nix {};
-  tla-community-modules = callPackage ./java/tla-community-modules.nix {};
-
-  gson = callPackage ./java/gson.nix {};
-
-  j2objc-annotations = callPackage ./java/j2objc-annotations.nix {};
-
-  checker-qual = callPackage ./java/checker-qual.nix {};
-
+  ejc = eclipse-jdt.core-compiler-batch;
   error-prone-annotations = callPackage ./java/error-prone-annotations.nix {};
-
+  failureaccess = callPackage ./java/failureaccess.nix {};
+  fastdoubleparser = callPackage ./java/fastdoubleparser.nix {};
+  fetchMaven = callPackage ./support-functions/fetchMaven.nix {};
+  findbugs-annotations = spotbugs-annotations;
+  gson = callPackage ./java/gson.nix {};
   guava = callPackage ./java/guava.nix {};
   guava-testlib = callPackage ./java/guava-testlib.nix {};
-  failureaccess = callPackage ./java/failureaccess.nix {};
   guice = callPackage ./java/guice.nix {};
-
-  aopalliance = callPackage ./java/aopalliance.nix {};
-
-  jsr305 = callPackage ./java/jsr305.nix {};
-
-  fastdoubleparser = callPackage ./java/fastdoubleparser.nix {};
-
-  jackson = recurseIntoAttrs (callPackage ./java/jackson.nix {});
-
-  relaxng-datatype = callPackage ./java/relaxng-datatype.nix {};
-
-  isorelax = callPackage ./java/isorelax.nix {};
-
-  xml-resolver = callPackage ./java/xml-resolver.nix {};
-
-  msv = recurseIntoAttrs (callPackage ./java/msv.nix {});
-
-  bnd-annotation = callPackage ./java/bnd.nix {};
-
-  woodstox-core = callPackage ./java/woodstox-core.nix {};
-
-  stax2-api = callPackage ./java/stax2-api.nix {};
-
-  snakeyaml = callPackage ./java/snakeyaml.nix {};
-
-  reactive-streams = callPackage ./java/reactive-streams.nix {};
-
   hamcrest = callPackage ./java/hamcrest.nix {};
-
-  junit4-untested = callPackage ./java/junit4.nix { testWithJUnit4 = null; };
-  junit4 = callPackage ./java/junit4.nix {
-    testWithJUnit4 = testWithJUnit4.override { junit4 = junit4-untested; takari-cpsuite = takari-cpsuite-untested; };
-  };
-
-  takari-cpsuite-untested = callPackage ./java/takari-cpsuite.nix { junit4 = junit4-untested; };
-  takari-cpsuite = callPackage ./java/takari-cpsuite.nix {};
-
-  testng = recurseIntoAttrs (callPackage ./java/testng.nix {});
-
-  jcommander = callPackage ./java/jcommander.nix {};
-
-  apiguardian = callPackage ./java/apiguardian.nix {};
-
-  opentest4j = callPackage ./java/opentest4j.nix {};
-
-  junit = recurseIntoAttrs (callPackage ./java/junit.nix {});
-
-  assertj-core = callPackage ./java/assertj.nix {};
-
-  mockito = callPackage ./java/mockito.nix {};
-
-  univocity-parsers = callPackage ./java/univocity-parsers.nix {};
-
-  open-test-reporting = callPackage ./java/open-test-reporting.nix {};
-
-  picocli = callPackage ./java/picocli.nix {};
-
-  javapoet = callPackage ./java/javapoet.nix {};
-
-  cmdreader = callPackage ./java/cmdreader.nix {};
-
-  lombok-patcher = callPackage ./java/lombok-patcher.nix {};
-
-  lombok = callPackage ./java/lombok.nix {};
-
-  vavr-match = callPackage ./java/vavr-match.nix {};
-
-  vavr = callPackage ./java/vavr.nix {};
-
-  jspecify = callPackage ./java/jspecify.nix {};
-
-  dexlib2 = callPackage ./java/dexlib2.nix {};
-
-  dex2jar = recurseIntoAttrs (callPackage ./java/dex2jar.nix {});
-
-  wala = recurseIntoAttrs (callPackage ./java/wala.nix {});
-
   heros = callPackage ./java/heros.nix {};
-
-  sootup = recurseIntoAttrs (callPackage ./java/sootup.nix {});
-
+  icu4j-core = callPackage ./java/icu4j-core.nix {};
+  isorelax = callPackage ./java/isorelax.nix {};
+  j2objc-annotations = callPackage ./java/j2objc-annotations.nix {};
+  jackson = recurseIntoAttrs (callPackage ./java/jackson.nix {});
+  jakarta-activation = callPackage ./java/jakarta/activation.nix {};
+  jakarta-inject-api = callPackage ./java/jakarta/inject-api.nix {};
+  jakarta-mail = callPackage ./java/jakarta/mail.nix {};
+  jakarta-oro = callPackage ./java/jakarta/oro.nix {};
+  jakarta-regexp = callPackage ./java/jakarta/regexp.nix {};
+  jakarta-servlet-api = callPackage ./java/jakarta/servlet-api.nix {};
+  janino = recurseIntoAttrs (callPackage ./java/janino.nix {});
+  jansi = callPackage ./java/jansi.nix {};
+  javapoet = callPackage ./java/javapoet.nix {};
+  javassist = callPackage ./java/javassist.nix {};
+  jcommander = callPackage ./java/jcommander.nix {};
+  jctools-core = callPackage ./java/jctools-core.nix {};
+  jeromq = callPackage ./java/jeromq.nix {};
+  jgrapht = recurseIntoAttrs (callPackage ./java/jgrapht.nix {});
+  jheaps = callPackage ./java/jheaps.nix {};
+  jline = recurseIntoAttrs (callPackage ./java/jline.nix {});
+  jmh = callPackage ./java/openjdk-jmh.nix {};
+  jmh-core = jmh.core;
+  jms-api = callPackage ./java/jms-api.nix {};
+  jna = callPackage ./java/jna.nix {};
+  jna-platform = callPackage ./java/jna-platform.nix {};
+  jnacl = callPackage ./java/jnacl.nix {};
+  joda-convert = callPackage ./java/joda-convert.nix {};
+  joda-time = callPackage ./java/joda-time.nix {};
+  jopt-simple = callPackage ./java/jopt-simple.nix {};
+  jose4j = callPackage ./java/jose4j.nix {};
+  jspecify = callPackage ./java/jspecify.nix {};
+  jsr305 = callPackage ./java/jsr305.nix {};
+  jungrapht = recurseIntoAttrs (callPackage ./java/jungrapht.nix {});
+  junit = recurseIntoAttrs (callPackage ./java/junit.nix {});
+  junit4 = callPackage ./java/junit4.nix { testWithJUnit4 = testWithJUnit4.override { junit4 = junit4-untested; takari-cpsuite = takari-cpsuite-untested; }; };
+  junit4-untested = callPackage ./java/junit4.nix { testWithJUnit4 = null; };
+  kafka = recurseIntoAttrs (callPackage ./java/kafka.nix {});
+  lmax-disruptor = callPackage ./java/lmax-disruptor.nix {};
+  log4j = recurseIntoAttrs (callPackage ./java/log4j.nix {});
+  log4j-1_2-api = log4j.log4j-1_2-api;
+  log4j-api = log4j.log4j-api;
+  log4j-core = log4j.log4j-core;
+  log4j-slf4j = log4j.log4j-slf4j;
+  logback = recurseIntoAttrs (callPackage ./java/logback.nix {});
+  lombok = callPackage ./java/lombok.nix {};
+  lombok-patcher = callPackage ./java/lombok-patcher.nix {};
+  lsp4j = callPackage ./java/lsp4j.nix {};
+  lz4 = callPackage ./java/lz4.nix {};
+  mockito = callPackage ./java/mockito.nix {};
+  msv = recurseIntoAttrs (callPackage ./java/msv.nix {});
+  no-class-dups = callPackage ./java/no-class-dups {};
+  objenesis = callPackage ./java/objenesis.nix {};
+  open-test-reporting = callPackage ./java/open-test-reporting.nix {};
+  opentest4j = callPackage ./java/opentest4j.nix {};
+  osgi = recurseIntoAttrs (callPackage ./java/osgi.nix {});
+  ow2 = recurseIntoAttrs (callPackage ./java/ow2.nix {});
+  ow2-asm = ow2.asm;
+  ow2-asm-commons = ow2.asm-commons;
+  ow2-asm-tree = ow2.asm-tree;
+  picocli = callPackage ./java/picocli.nix {};
   plume-lib = recurseIntoAttrs (callPackage ./java/plume-lib.nix {});
-
-  threetenbp = callPackage ./java/threetenbp.nix {};
-
   prettier4j = callPackage ./java/prettier4j.nix {};
-
+  reactive-streams = callPackage ./java/reactive-streams.nix {};
+  relaxng-datatype = callPackage ./java/relaxng-datatype.nix {};
+  slf4j = recurseIntoAttrs (callPackage ./java/slf4j.nix {});
+  snakeyaml = callPackage ./java/snakeyaml.nix {};
+  snappy = callPackage ./java/snappy.nix {};
+  sootup = recurseIntoAttrs (callPackage ./java/sootup.nix {});
+  spotbugs-annotations = callPackage ./java/spotbugs-annotations.nix {};
+  stax2-api = callPackage ./java/stax2-api.nix {};
+  takari-cpsuite = callPackage ./java/takari-cpsuite.nix {};
+  takari-cpsuite-untested = callPackage ./java/takari-cpsuite.nix { junit4 = junit4-untested; };
+  testng = recurseIntoAttrs (callPackage ./java/testng.nix {});
+  threetenbp = callPackage ./java/threetenbp.nix {};
+  tla-community-modules = callPackage ./java/tla-community-modules.nix {};
+  tlatools = callPackage ./java/tlatools.nix {};
+  treelayout = callPackage ./java/treelayout.nix {};
+  tukaani-xz = callPackage ./java/tukaani-xz.nix {};
+  univocity-parsers = callPackage ./java/univocity-parsers.nix {};
+  vavr = callPackage ./java/vavr.nix {};
+  vavr-match = callPackage ./java/vavr-match.nix {};
+  wala = recurseIntoAttrs (callPackage ./java/wala.nix {});
+  woodstox-core = callPackage ./java/woodstox-core.nix {};
+  xml-resolver = callPackage ./java/xml-resolver.nix {};
+  xtendc = xtext.xtend-core;
+  xtext = recurseIntoAttrs (callPackage ./java/eclipse/xtext.nix {});
+  zstd-jni = callPackage ./java/zstd-jni.nix {};
 } // (packageOverrides self));
 
 in self
