@@ -4,12 +4,12 @@
 buildJavaPackage rec {
   pname = "tla-community-modules";
   license = lib.licenses.mit;
-  version = "202409181925";
+  version = "202604221529";
   src = fetchFromGitHub {
     owner = "tlaplus";
     repo = "CommunityModules";
     rev = version;
-    hash = "sha256-bHZYUdy7dXlJ9iwGVK4aO4SxOgwNpX8R2ahOZN5Sxrw=";
+    hash = "sha256-3AoHx8GgU9cPTQeCBYpObZCw9L5ClUf2Y4QS8sNTkbw=";
   };
   srcDir = "modules";
   resourceDir = "modules";
