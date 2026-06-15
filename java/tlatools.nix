@@ -1,16 +1,16 @@
 {lib, buildJavaPackage, fetchFromGitHub,
- gson, jakarta-mail, jline, lsp4j, commons-math}:
+ gson, jakarta-mail, jline, lsp4j, commons-math, prettier4j}:
 
 buildJavaPackage {
   pname = "tlatools";
   license = lib.licenses.mit;
-  version = "1.8.0.2026.2.20";
+  version = "1.8.0.2026.5.26";
   src = fetchFromGitHub {
     owner = "tlaplus";
     repo = "tlaplus";
-    rev = "c688722edb9cadc4bdf1bd44b561812ec79d1201";
+    rev = "4ba7d8811289fb8e95dac4d5e554c05216ba3100";
     sparseCheckout = ["tlatools/org.lamport.tlatools"];
-    hash = "sha256-hqJycpBN6XbXKFmUe9QhY+91vkL3ODU/J4a8cYVmVP4=";
+    hash = "sha256-iOaoIjHW8K4yWxVr4nqbgLWLDSx8X+4so/Hk7n6AjNY=";
   };
   srcDir = "tlatools/org.lamport.tlatools/src";
   resourceDir = "tlatools/org.lamport.tlatools/src";
@@ -22,6 +22,7 @@ buildJavaPackage {
     lsp4j.debug
     lsp4j.jsonrpc
     commons-math
+    prettier4j
   ];
   patchPhase = ''
     rm -rfv tlatools/org.lamport.tlatools/src/org/apache
