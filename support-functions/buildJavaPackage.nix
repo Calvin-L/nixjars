@@ -118,5 +118,4 @@ stdenvNoCC.mkDerivation (
   meta = (meta // {
     license = license;
   });
-  __contentAddressed = true;
 })
