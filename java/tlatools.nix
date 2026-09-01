@@ -4,13 +4,13 @@
 buildJavaPackage {
   pname = "tlatools";
   license = lib.licenses.mit;
-  version = "1.8.0.2026.5.26";
+  version = "1.8.0.2026.8.31";
   src = fetchFromGitHub {
     owner = "tlaplus";
     repo = "tlaplus";
-    rev = "4ba7d8811289fb8e95dac4d5e554c05216ba3100";
+    rev = "95b800c676b3312ce97d7478d1081cd468ece75c";
     sparseCheckout = ["tlatools/org.lamport.tlatools"];
-    hash = "sha256-iOaoIjHW8K4yWxVr4nqbgLWLDSx8X+4so/Hk7n6AjNY=";
+    hash = "sha256-xNoa1/kBB89Uh2Ptc+NzeG6Rl63rGmmYstQgyP2fSG8=";
   };
   srcDir = "tlatools/org.lamport.tlatools/src";
   resourceDir = "tlatools/org.lamport.tlatools/src";
