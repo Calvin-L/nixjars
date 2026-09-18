@@ -30,7 +30,7 @@ stdenvNoCC.mkDerivation {
     cp -v --reflink=auto "$src" "${dollar}{!outputLib}/${outputJar}"
     ${builtins.concatStringsSep "\n" (builtins.map mkExe exes)}
   '';
-  nativeBuildInputs = lib.optional (exes != []) [makeWrapper];
+  nativeBuildInputs = lib.optionals (exes != []) [makeWrapper];
   outputs = if exes == [] then ["out"] else ["bin" "lib" "out"];
   meta = {
     license = license;
