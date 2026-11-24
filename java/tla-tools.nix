@@ -4,13 +4,13 @@
 buildJavaPackage {
   pname = "tlatools";
   license = lib.licenses.mit;
-  version = "1.8.0.2026.8.31";
+  version = "1.8.0.2026.11.14";
   src = fetchFromGitHub {
     owner = "tlaplus";
     repo = "tlaplus";
-    rev = "95b800c676b3312ce97d7478d1081cd468ece75c";
+    rev = "bc1b506bdcad80bb518bf3776a9161c34ff0fc4c";
     sparseCheckout = ["tlatools/org.lamport.tlatools"];
-    hash = "sha256-xNoa1/kBB89Uh2Ptc+NzeG6Rl63rGmmYstQgyP2fSG8=";
+    hash = "sha256-ykdFVycjHsoi1r7IOfxBZJFoakwc2OFogz/9RfBqxV8=";
   };
   srcDir = "tlatools/org.lamport.tlatools/src";
   resourceDir = "tlatools/org.lamport.tlatools/src";
@@ -25,7 +25,14 @@ buildJavaPackage {
     prettier4j
   ];
   patchPhase = ''
+    mv -v tlatools/org.lamport.tlatools/src/org/apache/commons/math3/primes/TLCPrimes.java .
+    mv -v tlatools/org.lamport.tlatools/src/org/apache/commons/math3/util/TLCFastMath.java .
+
     rm -rfv tlatools/org.lamport.tlatools/src/org/apache
+
+    mkdir -p tlatools/org.lamport.tlatools/src/org/apache/commons/math3/{primes,util}
+    mv -v TLCPrimes.java   tlatools/org.lamport.tlatools/src/org/apache/commons/math3/primes/
+    mv -v TLCFastMath.java tlatools/org.lamport.tlatools/src/org/apache/commons/math3/util/
   '';
   configurePhase = ''
     substituteInPlace tlatools/org.lamport.tlatools/src/util/MailSender.java \
